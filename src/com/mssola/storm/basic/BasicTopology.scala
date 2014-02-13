@@ -19,6 +19,9 @@ import java.util.Map
 import collection.mutable.{HashMap}
 
 
+/**
+ * The RandomSentenceSpout is a spout that generates sentences randomly.
+ */
 class RandomSentenceSpout extends BaseRichSpout {
     var _collector: SpoutOutputCollector = _
     val _sentences = List("the cow jumped over the moon",
@@ -42,6 +45,11 @@ class RandomSentenceSpout extends BaseRichSpout {
     }
 }
 
+/**
+ * The SplitSentence class has the RandomSentenceSpout for the input
+ * and the WordCount bolt for the output. It receives a sentence and
+ * emits the words of this sentence.
+ */
 class SplitSentence extends BaseBasicBolt {
     def execute(t: Tuple, collector: BasicOutputCollector) = {
         t.getString(0).split(" ").foreach {
@@ -54,6 +62,10 @@ class SplitSentence extends BaseBasicBolt {
     }
 }
 
+/**
+ * The WordCount only has an input, the SplitSentence bolt. It receives
+ * a word and keeps track of how many times each word has been visited.
+ */
 class WordCount extends BaseBasicBolt {
     var counts = new HashMap[String, Integer]().withDefaultValue(0)
 
@@ -68,6 +80,11 @@ class WordCount extends BaseBasicBolt {
     }
 }
 
+/**
+ * The object that holds the main function. It defines the topology which
+ * is as follows: RandomSentenceSpout -> SplitSentence -> WordCount. This
+ * topology will run locally.
+ */
 object BasicTopology {
     def main(args: Array[String]) = {
         val builder = new TopologyBuilder
