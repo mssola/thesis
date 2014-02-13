@@ -4,10 +4,13 @@ This is a basic example so we get to know Storm a bit better. It creates
 one spout and two bolts. The spout will be spitting random sentences to
 the first bolt. The first bolt will then split the received sentence into
 words and it will emit these words to the last bolt. The last bolt keeps
-track of the words that it has seen.
+track of the words that it has seen. In order to run this topology (and
+install all the dependencies) you have to type:
 
-This example doesn't do any proper output (like printing to a file, etc.).
-The programmer can be sure that it's working by checking the debug messages.
+    $ sbt run
+
+This example doesn't do any proper output (e.g. printing to a file). The
+programmer can be sure that it's working by checking the debug messages.
 There the programmer can see things like:
 
     Emitting: count default [nature, 14]
