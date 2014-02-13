@@ -15,6 +15,5 @@ There the programmer can see things like:
 This message comes from the second bolt and it says that it has counted
 the word "nature" 14 times.
 
-Copyright &copy; 2014 Miquel Sabaté Solà (mikisabate@gmail.com).
-
+Copyright &copy; 2014 Miquel Sabaté Solà &lt;mikisabate@gmail.com&gt;.
 Released under the MIT License. See the LICENSE file.
