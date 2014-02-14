@@ -7,17 +7,17 @@ to a bolt. This bolt will then process this word by storing it to Redis.
 Let's run this example. First of all, fire up the redis daemon. In Archlinux
 this is easy candy:
 
-  $ sudo systemctl start redis
+    $ sudo systemctl start redis
 
 Ok, Redis is up and running. Now we need to run this example through sbt:
 
-  $ sbt run
+    $ sbt run
 
 This will update all the dependencies and it will finally start a TCP
 server that is listening to the port 9000. Let's send a word to this app:
 
-  $ telnet 127.0.0.1 9000
-  $ hello
+    $ telnet 127.0.0.1 9000
+    $ hello
 
 After doing this, the server will close the client connection. Therefore,
 if you want to pass more words you'll have to re-connect again and write
@@ -27,15 +27,15 @@ extra bolt filtering sentences, like the SplitBolt from the
 com.mssola.storm.basic package. Anyways, we can check the results from
 the previous example by accessing to the Redis CLI. That is:
 
-  $ redis-cli
-  127.0.0.1:6379) HMGET word-count hello
-  1) "1"
+    $ redis-cli
+    127.0.0.1:6379) HMGET word-count hello
+    1) "1"
 
 This means that we've received the word "hello" 1 time. In order to list all
 the words that we've received so far we can just execute the Redis command:
 
-  127.0.0.1:6379) HKEYS word-count
-  1) "word"
+    127.0.0.1:6379) HKEYS word-count
+    1) "word"
 
 And that's all!
 
