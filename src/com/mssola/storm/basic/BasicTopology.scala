@@ -23,26 +23,26 @@ import collection.mutable.{HashMap}
  * The RandomSentenceSpout is a spout that generates sentences randomly.
  */
 class RandomSentenceSpout extends BaseRichSpout {
-    var _collector: SpoutOutputCollector = _
-    val _sentences = List("the cow jumped over the moon",
-                          "an apple a day keeps the doctor away",
-                          "four score and seven years ago",
-                          "snow white and the seven dwarfs",
-                          "i am at two with nature")
+  var _collector: SpoutOutputCollector = _
+  val _sentences = List("the cow jumped over the moon",
+                        "an apple a day keeps the doctor away",
+                        "four score and seven years ago",
+                        "snow white and the seven dwarfs",
+                        "i am at two with nature")
 
-    def open(conf: Map[_,_], context: TopologyContext, collector: SpoutOutputCollector) = {
-        _collector = collector
-    }
+  def open(conf: Map[_,_], context: TopologyContext, collector: SpoutOutputCollector) = {
+    _collector = collector
+  }
 
-    def nextTuple() = {
-        Thread.sleep(100);
-        val sentence = _sentences(Random.nextInt(_sentences.length))
-        _collector.emit(new Values(sentence));
-    }
+  def nextTuple() = {
+    Thread.sleep(100);
+    val sentence = _sentences(Random.nextInt(_sentences.length))
+    _collector.emit(new Values(sentence));
+  }
 
-    def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-        declarer.declare(new Fields("word"))
-    }
+  def declareOutputFields(declarer: OutputFieldsDeclarer) = {
+    declarer.declare(new Fields("word"))
+  }
 }
 
 /**
@@ -51,15 +51,15 @@ class RandomSentenceSpout extends BaseRichSpout {
  * emits the words of this sentence.
  */
 class SplitSentence extends BaseBasicBolt {
-    def execute(t: Tuple, collector: BasicOutputCollector) = {
-        t.getString(0).split(" ").foreach {
-            word => collector.emit(new Values(word))
-        }
+  def execute(t: Tuple, collector: BasicOutputCollector) = {
+    t.getString(0).split(" ").foreach {
+      word => collector.emit(new Values(word))
     }
+  }
 
-    def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-        declarer.declare(new Fields("word"))
-    }
+  def declareOutputFields(declarer: OutputFieldsDeclarer) = {
+    declarer.declare(new Fields("word"))
+  }
 }
 
 /**
@@ -67,17 +67,17 @@ class SplitSentence extends BaseBasicBolt {
  * a word and keeps track of how many times each word has been visited.
  */
 class WordCount extends BaseBasicBolt {
-    var counts = new HashMap[String, Integer]().withDefaultValue(0)
+  var counts = new HashMap[String, Integer]().withDefaultValue(0)
 
-    def execute(t: Tuple, collector: BasicOutputCollector) {
-        val word = t.getString(0)
-        counts(word) += 1
-        collector.emit(new Values(word, counts(word)))
-    }
+  def execute(t: Tuple, collector: BasicOutputCollector) {
+    val word = t.getString(0)
+    counts(word) += 1
+    collector.emit(new Values(word, counts(word)))
+  }
 
-    def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-        declarer.declare(new Fields("word", "count"));
-    }
+  def declareOutputFields(declarer: OutputFieldsDeclarer) = {
+    declarer.declare(new Fields("word", "count"));
+  }
 }
 
 /**
@@ -86,21 +86,21 @@ class WordCount extends BaseBasicBolt {
  * topology will run locally.
  */
 object BasicTopology {
-    def main(args: Array[String]) = {
-        val builder = new TopologyBuilder
-        builder.setSpout("randsentence", new RandomSentenceSpout, 5)
-        builder.setBolt("split", new SplitSentence, 8)
-        .shuffleGrouping("randsentence")
-        builder.setBolt("count", new WordCount, 12)
-        .fieldsGrouping("split", new Fields("word"))
+  def main(args: Array[String]) = {
+    val builder = new TopologyBuilder
+    builder.setSpout("randsentence", new RandomSentenceSpout, 5)
+    builder.setBolt("split", new SplitSentence, 8)
+    .shuffleGrouping("randsentence")
+    builder.setBolt("count", new WordCount, 12)
+    .fieldsGrouping("split", new Fields("word"))
 
-        val conf = new Config
-        conf.setDebug(true)
-        conf.setMaxTaskParallelism(3)
+    val conf = new Config
+    conf.setDebug(true)
+    conf.setMaxTaskParallelism(3)
 
-        val cluster = new LocalCluster
-        cluster.submitTopology("word-count", conf, builder.createTopology)
-        Thread.sleep(10000)
-        cluster.shutdown
-    }
+    val cluster = new LocalCluster
+    cluster.submitTopology("word-count", conf, builder.createTopology)
+    Thread.sleep(10000)
+    cluster.shutdown
+  }
 }
