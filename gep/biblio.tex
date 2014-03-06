@@ -1,0 +1,49 @@
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{indentfirst}
+\usepackage[pdftex]{graphicx}
+\usepackage{wrapfig}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+\newcommand{\espai}{\par\vspace{5mm}}
+\newcommand{\mylist}{
+\begin{itemize}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}}
+\newcommand{\mylistend}{\end{itemize}}
+
+\usepackage{titling}
+\setlength{\droptitle}{-5cm}
+
+\title{\bf Contextualization and Bibliography}
+\author{
+  {\bf Author}: Miquel Sabaté Solà
+  \and
+  {\bf Director}: Jordi García Almiñana
+}
+\date{March 6, 2014}
+\vspace{-1.0cm}
+
+\begin{document}
+
+% Title
+\clearpage\maketitle
+
+\setcounter{page}{1}
+\section{Context}
+
+To do.
+
+\section{State of the art}
+
+To Do.
+Instead of WYSIWYG editors, typesetting systems like \TeX{} or \LaTeX{}
+\cite{greenwade93} can be used.
+
+\bibliographystyle{unsrt}
+\bibliography{biblio}
+
+\end{document}
