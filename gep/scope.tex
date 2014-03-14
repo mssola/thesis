@@ -1,50 +1,18 @@
 
-\documentclass[a4paper,12pt]{article}
+\section{Project scope}
 
-\usepackage{indentfirst}
-\usepackage[pdftex]{graphicx}
-\usepackage{wrapfig}
-\usepackage[utf8]{inputenc}
-\usepackage[catalan]{babel}
+\subsection{The context: Big data and streaming}
 
-\newcommand{\espai}{\par\vspace{5mm}}
-\newcommand{\mylist}{
-\begin{itemize}
-\setlength{\itemsep}{1pt}
-\setlength{\parskip}{0pt}
-\setlength{\parsep}{0pt}}
-\newcommand{\mylistend}{\end{itemize}}
-
-\usepackage{titling}
-\setlength{\droptitle}{-5cm}
-
-\begin{document}
-
-% Title
-\title{Scope of my Bachelor's Degree Thesis}
-\author{Miquel Sabaté Solà}
-\date{20th February 2014}
-\maketitle
-
-\setcounter{page}{1}
-
-\vspace{-1.0cm}
-
-\section*{Introduction}
-
-\subsection*{The context: Big data and streaming}
-
-Once upon a time, Google released a paper called:
-``MapReduce: Simplified Data Processing on Large
-Clusters''\footnote{http://research.google.com/archive/mapreduce-osdi04.pdf}.
-This was the beginning of a revolution in the data processing front. After
-that, lots of efforts have been put in this direction, being Hadoop one of the
-most important accomplishments. Hadoop (and related technologies) has made it
-possible to store and process data at scales previously unthinkable.
+Once upon a time, Google released a paper called: ``MapReduce: Simplified Data
+Processing on Large Clusters''\cite{mapreduce}. This was the beginning of
+a revolution in the data processing front. After that, lots of efforts
+have been put in this direction, being Hadoop one of the most important
+accomplishments. Hadoop (and related technologies) has made it possible
+to store and process data at scales previously unthinkable.
 
 However, these technologies have one major drawback: they are not realtime
 systems, nor are they meant to be. In order to solve this issue one has to
-manually implement a network of queues and workers. These worker would
+manually implement a network of queues and workers. These workers would
 eventually send messages, update databases, and send new messages to other
 queues for further processing. This, of course, has some serious limitations:
 it's tedious, it doesn't scale, and it has little fault-tolerance.
@@ -53,26 +21,26 @@ In order to fix the previously cited issues from the core, some projects like
 Yahoo! S4 and Twitter Storm emerged. Both projects have some differences but
 they have a clear focus: to ease the writing of parallel realtime computation.
 Sadly, nowadays the S4 project is dead. This is why in this thesis I'm picking
-Storm\footnote{http://storm-project.net} as the base technology (plus, the Storm
-project has a very active community).
+Storm\cite{storm} as the base technology (plus, the Storm project has a very
+active community).
 
-\subsection*{Scope of my proposal}
+\subsection{My proposal}
 
-My Bachelor's Degree Thesis is about building an infrastructure that is capable
+My Bachelor Degree Thesis is about building an infrastructure that is capable
 of providing a set of services from the data that has been collected and
 processed. The raw data for this infrastructure will come from OpenData
-BCN\footnote{http://opendata.bcn.cat/opendata/en} iniciative. That is, the
-infrastructure that I'm going to build for my thesis will provide additional
-features to the OpenData BCN iniciative that are only possible by building a
-cluster that will process data continiously.
+BCN\cite{opendata} iniciative. That is, the infrastructure that I'm going
+to build for my thesis will provide additional features to the OpenData
+BCN iniciative that are only possible by building a cluster that will
+process data continiously.
 
 This infrastructure will fetch and process all this data in realtime, using
 Storm as the base technology in the software front. This is important because
 the users of all the services build upon these infrastructure will be able to
 fetch all the processed data also in realtime.
 
-This means that I'm not just going to do research only in the Big data and
-streaming front, but I'm also going to get my hands dirty with the whole concept
+This means that I am not just going to do research only in the Big data and
+streaming front, but I'm also going to research more deeply in the whole concept
 of ``Smart City''. This is because this infrastructure will be built in a way
 so other services can fetch our processed data to improve, promote and have a
 better understanding of the city of Barcelona.
@@ -87,36 +55,36 @@ the following points:
   \item Provide a couple of useful services on top of the base system.
 \mylistend
 
-\section*{Goals}
+\subsection{Goals}
 
 The previous section contained all the information regarding what my Thesis is
-about. Now I'm going to relate my goals for doing this project.
+about. Now I am going to relate my goals for doing this project.
 
 \mylist
-  \item {\bf Research}. Because of this thesis, I'll be doing a lot of
+  \item {\bf Research}. Because of this thesis, I will be doing a lot of
 research. My main focus will be: Big data, streaming processing and smart
 cities. I will be investigating, for each of them, their state of the art, what
 should we know about and what can we do with them.
   \item {\bf Learn} some technologies as a side effect. My base technology will
-be the Storm framework. This means that I'll be learning and improving my
+be the Storm framework. This means that I will be learning and improving my
 skills in programming languages like Java and Scala. I will also be improving my
-skills with concurrent programming. I'll further also my knowledge on hardware
+skills with concurrent programming. I will further also my knowledge on hardware
 by analyzing what kind of machines we need in order to provide and scale all the
 services.
   \item {\bf Provide} a useful technology base. The main goal of this Thesis is
-to create a base technology that will be useful to other people. This way we'll
-be able to provide a set of services that will potentially improve the city of
-Barcelona on multiple ways. I'm really optimistic about this project, and I can
-see other thesis from other students about improving or extending the
+to create a base technology that will be useful to other people. This way we
+will be able to provide a set of services that will potentially improve the
+city of Barcelona on multiple ways. I am really optimistic about this project,
+and I can see other thesis from other students about improving or extending the
 infrastructure that I'll be building in my thesis.
-  \item {\bf Practice}. The Bachelor's Degree Thesis is the final stop of this
+  \item {\bf Practice}. The Bachelor Degree Thesis is the final stop of this
 journey that I've been doing in the Barcelona School of Informatics. I've
-learnt a lot and I'm ready to apply some of the concepts learnt in this
+learnt a lot and I am ready to apply some of the concepts learnt in this
 university to this Thesis.
 
 \mylistend
 
-\section*{About the development}
+\subsection{About the development}
 
 Lastly, I want to clarify how I want to develop this project. First of all, the
 code that will make all this to happen is open source. This means that all of
@@ -126,15 +94,13 @@ Github\footnote{https://github.com/mssola/thesis}. This is really important for
 me for the following reasons:
 
 \mylist
-  \item I'm a strong advocate of Open Source.
+  \item I am a strong advocate of Open Source.
   \item It could help future thesis based on this infrastructure.
   \item It could help anyone in the world that is developing something similar.
-  \item It's fair.
+  \item It is fair.
 \mylistend
 
-My workflow will consist in discussing any doubts that I'd have with my teacher
-and keep on developing the whole platform in an open way. Finally, I want to
-point out my resources, that I quite humble. I'll spend most of my time doing
-this project, with all the resources that I have.
-
-\end{document}
+My workflow will consist in discussing any doubts that I would have with my
+teacher and keep on developing the whole platform in an open way. Finally, I
+want to point out my resources, that I quite humble. I will spend most of my
+time doing this project, with all the resources that I have.
