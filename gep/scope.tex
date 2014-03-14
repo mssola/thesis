@@ -45,20 +45,7 @@ of ``Smart City''. This is because this infrastructure will be built in a way
 so other services can fetch our processed data to improve, promote and have a
 better understanding of the city of Barcelona.
 
-This is my proposal. However, any proposal is doomed if it's not specified a set
-of rules that define the scope of it. The scope of my Thesis will consist of
-the following points:
-
-\mylist
-  \item Design a cluster that can match our requirements.
-  \item Design a base system that will fetch and process all the data.
-  \item Provide a couple of useful services on top of the base system.
-\mylistend
-
-\subsection{Goals}
-
-The previous section contained all the information regarding what my Thesis is
-about. Now I am going to relate my goals for doing this project.
+I am very motivated for this project for the following reasons:
 
 \mylist
   \item {\bf Research}. Because of this thesis, I will be doing a lot of
@@ -81,8 +68,48 @@ infrastructure that I'll be building in my thesis.
 journey that I've been doing in the Barcelona School of Informatics. I've
 learnt a lot and I am ready to apply some of the concepts learnt in this
 university to this Thesis.
-
 \mylistend
+
+\subsection{Goals}
+
+In the previous section I have clarified my proposal and my motivations. Now
+it is time to specify the specific goals of this project:
+
+\mylist
+  \item Design a cluster that can match our requirements.
+  \item Design a base system that will fetch and process all the data.
+  \item Provide a couple of useful services on top of the base system.
+\mylistend
+
+\subsection{Limitations and risks}
+
+There are more things to evaluate before starting the project. In this section
+I will describe the limitations and the risks of this project.
+
+I will start by specifying the limitations. This project does not intend to
+cover as much as possible in regards to the technologies that I will be using.
+This is not a project about Storm or any other technology that I will be using.
+Instead, this is a project focused on solving a specific problem.
+
+Another limitation comes with the hardware. First of all, the sensors. An ideal
+situation would be that I design the sensors and I establish a way for the
+sensors to communicate with the cluster. However, this is unlikely to happen,
+so that I am relying in an already existing solution such as OpenData BCN.
+Another limitation is the cluster itself. Ideally I would design a base cluster
+to handle all the software, but it is extremely unlikely that this cluster
+gets built anytime soon. For this reason, I will do my experiments in my local
+machine and, hopefully, also in the clusters provided by the Computer
+Architecture Department.
+
+There are some risks to evaluate too. First of all, I want to talk about time
+related problems. If I do not have enough time to build the software, I intend
+to cut on services. That is, I won't be building more services. The core
+software is a must, though, so there won't be any time related issues here.
+
+Another possible risk comes with the possibility that maybe the OpenData BCN
+and the iCity initiatives don't meet my expectations. In this case I will be
+developing an ``alternate'' solution, by specifying how ideally the sensors or
+the interface to the sensor would be sending requests to my cluster.
 
 \subsection{About the development}
 
@@ -92,6 +119,8 @@ the base technology and the code that I will be developing is all open source.
 In fact, all my code is hosted on
 Github\footnote{https://github.com/mssola/thesis}. This is really important for
 me for the following reasons:
+
+\espai
 
 \mylist
   \item I am a strong advocate of Open Source.
