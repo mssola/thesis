@@ -2,10 +2,6 @@
 // This file is licensed under the MIT license.
 // See the LICENSE file.
 
-package com.mssola.storm
+package com.mssola.snacker
 
-/**
- * The package basic contains all the related code to a basic example
- * of the Storm framework.
- */
-package object socket {}
+package object Snacker {}
