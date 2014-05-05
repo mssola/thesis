@@ -7,5 +7,5 @@ jdk:
   - openjdk7
   - oraclejdk7
 script:
-  - sh -c 'cd snacker' && "sbt -Dlog4j.configuration=file://$TRAVIS_BUILD_DIR/project/travis-log4j.properties ++$TRAVIS_SCALA_VERSION test"
+  - sh -c 'cd snacker' && sbt ++$TRAVIS_SCALA_VERSION test
 
