@@ -11,9 +11,7 @@ Thesis.
 
 # Licensing
 
-My Bachelor Degree Thesis is being developed as an open source project. Each
-subdirectory represents a subproject in itself. This means that each
-subdirectory defines its license and the copyright holders.
+My Bachelor Degree Thesis is released under the MIT License.
 
 Copyright &copy; 2014 Miquel Sabaté Solà
 
