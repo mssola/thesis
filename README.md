@@ -1,4 +1,4 @@
-# My Thesis
+# My Thesis [![Build Status](https://travis-ci.org/mssola/thesis.svg?branch=master)](https://travis-ci.org/mssola/thesis)
 
 This repository holds all the files that have something to do with my
 Bachelor's thesis. The code is structured in the following way:
