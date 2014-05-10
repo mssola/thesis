@@ -4,4 +4,6 @@
 
 package com.mssola.core
 
-package object Core {}
+
+abstract class Plugin {
+}

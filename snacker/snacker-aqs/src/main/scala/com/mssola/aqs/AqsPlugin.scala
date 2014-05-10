@@ -2,12 +2,9 @@
 // This file is licensed under the MIT license.
 // See the LICENSE file.
 
-package com.mssola.core
+package com.mssola.aqs
 
+import com.mssola.core.Plugin
 
-object SnackerTopology {
-  def main(args: Array[String]) = {
-    println("Hello World!")
-  }
+class AqsPlugin extends Plugin {
 }
-
