@@ -15,7 +15,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.core
+package snacker
 
-abstract class Plugin {
+import com.mssola.core.Request
+
+object Main {
+  def main(args: Array[String]) = {
+    val v = Request("/api/cities").asString
+    println(v)
+  }
 }
+

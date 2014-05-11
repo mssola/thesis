@@ -59,7 +59,10 @@ object SnackerBuild extends Build {
     test := { }
   ).aggregate(
     snackerCore,
+    snackerInfo,
     snackerAqs
+  ).dependsOn(
+    snackerCore
   )
 
   // Helper function that creates a sub-module with the proper format.
@@ -77,11 +80,23 @@ object SnackerBuild extends Build {
     fork := true,
 
     libraryDependencies ++= Seq(
-      "storm" % "storm" % "0.9.0.1" exclude("junit", "junit")
+      "storm" % "storm" % "0.9.0.1" exclude("junit", "junit"),
+      "org.scalaj" %% "scalaj-http" % "0.3.15"
     )
   )
 
   lazy val snackerAqs = module("aqs").settings(
+    // Storm requires a separate process when executing sbt run.
+    fork := true,
+
+    libraryDependencies ++= Seq(
+      "storm" % "storm" % "0.9.0.1" exclude("junit", "junit")
+    )
+  ).dependsOn(
+    snackerCore
+  )
+
+  lazy val snackerInfo = module("info").settings(
     // Storm requires a separate process when executing sbt run.
     fork := true,
 

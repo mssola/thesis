@@ -15,9 +15,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.aqs
+package com.mssola.core
 
-import com.mssola.core.Plugin
+import java.io.InputStreamReader
+import scalaj.http.Http
 
-class AqsPlugin extends Plugin {
+object Request {
+  val ApiUrl: String = "http://icity-gw.icityproject.com:8080/developer"
+
+  def apply(uri: String) = {
+    Http(ApiUrl + uri).param("apikey", apiKey)
+  }
+
+  private def apiKey: String = {
+    try {
+      sys.env("SNACKER_API_KEY")
+    } catch {
+      // TODO
+      case e: java.util.NoSuchElementException =>{
+        sys.exit(1)
+      }
+      case another: Exception => sys.exit(1)
+    }
+  }
 }
+
