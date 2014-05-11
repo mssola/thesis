@@ -3,6 +3,8 @@ name := "snacker"
 
 version := "0.1"
 
+organization := "com.mssola"
+
 resolvers ++= Seq("clojars" at "http://clojars.org/repo/")
 
 libraryDependencies += "storm" % "storm" % "0.9.0.1" exclude("junit", "junit")
@@ -15,5 +17,5 @@ fork := true
 // set Ivy logging to be at the highest level - for debugging
 ivyLoggingLevel := UpdateLogging.Full
 
-// Aagin this may be useful for debugging
+// Again this may be useful for debugging
 logLevel := Level.Info
