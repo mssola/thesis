@@ -1,5 +1,5 @@
 
-name := "snacker"
+name := "snacker-aqs"
 
 version := "0.1"
 
