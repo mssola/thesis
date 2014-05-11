@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.mssola.core
 
 import java.io.InputStreamReader
-import com.twitter.logging.Level
 import scalaj.http.Http
 
 object Request {
@@ -33,11 +32,11 @@ object Request {
       sys.env("SNACKER_API_KEY")
     } catch {
       case no: java.util.NoSuchElementException =>{
-        log(Level.FATAL, "You have to set the SNACKER_API_KEY env variable")
+        println("You have to set the SNACKER_API_KEY environment variable!")
         sys.exit(1)
       }
       case e: Exception =>{
-        log.error(e, "Oops! %s", e.getMessage)
+        println("Oops! " + e.getMessage)
         sys.exit(1)
       }
     }

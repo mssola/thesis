@@ -81,8 +81,7 @@ object SnackerBuild extends Build {
 
     libraryDependencies ++= Seq(
       "storm" % "storm" % "0.9.0.1" exclude("junit", "junit"),
-      "org.scalaj" %% "scalaj-http" % "0.3.15",
-      "com.twitter" %% "util-logging" % "6.5.0"
+      "org.scalaj" %% "scalaj-http" % "0.3.15"
     )
   )
 
