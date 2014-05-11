@@ -15,11 +15,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.core
+package com.mssola
 
-object Main {
-  def main(args: Array[String]) = {
-    println("Hello World!\n")
-  }
+import com.twitter.logging.Logger
+
+package object core {
+  val log = Logger.get("com.mssola.core")
 }
 
