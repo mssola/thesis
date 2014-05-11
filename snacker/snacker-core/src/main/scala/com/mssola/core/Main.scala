@@ -5,8 +5,8 @@
 package com.mssola.core
 
 
-object Main extends App {
-  override def main(args: Array[String]) = {
+object Main {
+  def main(args: Array[String]) = {
     println("Hello World!\n")
   }
 }
