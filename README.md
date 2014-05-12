@@ -2,6 +2,8 @@
 
 Under construction.
 
+Document about SNACKER_API_KEY.
+
 # License
 
 Copyright (C) 2014 Miquel Sabaté Solà <mikisabate@gmail.com>
