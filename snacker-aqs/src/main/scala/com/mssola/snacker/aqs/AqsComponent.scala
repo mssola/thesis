@@ -15,26 +15,27 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package snacker
+package com.mssola.snacker.aqs
 
-import java.util.UUID
-import org.joda.time.DateTime
-import com.mssola.core.Request
+import com.mssola.snacker.core.{ BaseComponent }
 import net.liftweb.json._
+import backtype.storm.topology.{ TopologyBuilder }
 
-object Snacker {
-  def main(args: Array[String]) {
-    println(args.length)
-    println(args)
-    return
-    val r = Request("/api/cities/3/devices").asString
+class AqsComponent extends BaseComponent {
+  override def cityId = 3
+
+  override def initialize() = {
     implicit val formats = DefaultFormats
-    val devices = parse(r).extract[List[DeviceJSON]]
-    for (d <- devices) {
+    val res = parse(devices().asString).extract[List[DeviceJSON]]
+    for (d <- res) {
       val dev = new Device(d.deviceID.toInt, d.name, d.cityID.toInt,
                            d.longitude.toDouble, d.latitude.toDouble)
-//       Devices.insertDevice(dev)
-      println(dev)
+      Devices.insertDevice(dev)
     }
+  }
+
+  override def buildTopology(builder: TopologyBuilder) = {
+    builder.setSpout("aqss", new AqsSpout, 1)
+    builder.setBolt("aqsb", new AqsBolt, 8).shuffleGrouping("aqss")
   }
 }

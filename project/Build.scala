@@ -33,6 +33,7 @@ object SnackerBuild extends Build {
       "-Yresolve-term-conflict:package"
     ),
 
+    /* TODO: Remove json from the shared settings */
     libraryDependencies ++= Seq(
       "com.newzly"  %% "phantom-dsl" % "0.6.0",
       "net.liftweb" %% "lift-json" % "3.0-M0",
@@ -63,9 +64,11 @@ object SnackerBuild extends Build {
   ).settings(
     test := { }
   ).aggregate(
-    snackerCore
+    snackerCore,
+    snackerAqs
   ).dependsOn(
-    snackerCore
+    snackerCore,
+    snackerAqs
   )
 
   // Helper function that creates a sub-module with the proper format.
@@ -85,5 +88,16 @@ object SnackerBuild extends Build {
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "0.3.15"
     )
+  )
+
+  lazy val snackerAqs = module("aqs").settings(
+    // Storm requires a separate process when executing sbt run.
+    fork := true,
+
+    libraryDependencies ++= Seq(
+      "net.liftweb" %% "lift-json" % "3.0-M0"
+    )
+  ).dependsOn(
+    snackerCore
   )
 }

@@ -15,12 +15,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// package com.mssola.snacker ?
-package snacker
+package com.mssola.snacker
 
 import java.util.UUID
 import org.joda.time.DateTime
-import com.mssola.core.Request
+import com.mssola.snacker.core.{ Request, BaseComponent }
+import com.mssola.snacker.aqs.AqsComponent
 import net.liftweb.json._
 
 // Storm. TODO: sort this mess.
@@ -38,48 +38,12 @@ import java.io.{BufferedReader, InputStreamReader}
 
 
 
-class AqsSpout extends BaseRichSpout {
-  override def open(conf: Map[_,_], ctx: TopologyContext, col: SpoutOutputCollector) = {
-    // TODO
-  }
 
-  override def close() = {
-    // TODO
-  }
+object Snacker {
+  // TODO: try to avoid the new thingie.
+  val components: Array[BaseComponent] = Array(new AqsComponent)
 
-  override def nextTuple() = {
-    // TODO
-  }
-
-  override def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-    // TODO
-  }
-}
-
-class AqsBolt extends BaseBasicBolt {
-  def execute(t: Tuple, collector: BasicOutputCollector) = {
-    // TODO
-  }
-
-  def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-    // TODO
-  }
-}
-
-// TODO: rename
-object Main {
-  def initialize() = {
-    // TODO: specialize this guy.
-
-    val r = Request("/api/cities/3/devices").asString
-    implicit val formats = DefaultFormats
-    val devices = parse(r).extract[List[DeviceJSON]]
-    for (d <- devices) {
-      val dev = new Device(d.deviceID.toInt, d.name, d.cityID.toInt,
-                           d.longitude.toDouble, d.latitude.toDouble)
-      Devices.insertDevice(dev)
-    }
-  }
+  def initialize() = components foreach (c => c.initialize)
 
   def main(args: Array[String]) {
     // Initialize some settings if specified.
@@ -88,14 +52,13 @@ object Main {
     }
 
     val builder = new TopologyBuilder
-    builder.setSpout("aqss", new AqsSpout, 1)
-    builder.setBolt("aqsb", new AqsBolt, 8).shuffleGrouping("aqss")
+    components foreach (c => c.buildTopology(builder))
 
     val conf = new Config
     conf.setDebug(true)
-    conf.setMaxTaskParallelism(4)
+    conf.setMaxTaskParallelism(components.size * 2)
 
     val cluster = new LocalCluster
-    cluster.submitTopology("aqs", conf, builder.createTopology)
+    cluster.submitTopology("snacker", conf, builder.createTopology)
   }
 }
