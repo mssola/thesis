@@ -17,12 +17,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package snacker
 
+import java.util.UUID
+import org.joda.time.DateTime
 import com.mssola.core.Request
+import net.liftweb.json._
 
-object Main {
-  def main(args: Array[String]) = {
-    val v = Request("/api/cities").asString
-    println(v)
+object Snacker {
+  def main(args: Array[String]) {
+    println(args.length)
+    println(args)
+    return
+    val r = Request("/api/cities/3/devices").asString
+    implicit val formats = DefaultFormats
+    val devices = parse(r).extract[List[DeviceJSON]]
+    for (d <- devices) {
+      val dev = new Device(d.deviceID.toInt, d.name, d.cityID.toInt,
+                           d.longitude.toDouble, d.latitude.toDouble)
+//       Devices.insertDevice(dev)
+      println(dev)
+    }
   }
 }
-

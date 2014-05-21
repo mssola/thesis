@@ -18,13 +18,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.mssola.core
 
 import java.io.InputStreamReader
-import scalaj.http.Http
+import scalaj.http.{Http, HttpOptions}
 
 object Request {
   val ApiUrl: String = "http://icity-gw.icityproject.com:8080/developer"
 
   def apply(uri: String) = {
-    Http(ApiUrl + uri).param("apikey", apiKey)
+    Http(joinUrl(ApiUrl, uri))
+      .param("apikey", apiKey)
+      .header("Content-Type", "application/json")
+      .header("Charset", "UTF-8")
+      .option(HttpOptions.readTimeout(10000))
+  }
+
+  // TODO: move this into another class.
+  private def joinUrl(url: String, uri: String): String = {
+    if (url.endsWith("/")) {
+      if (uri.startsWith("/")) {
+        return url + uri.slice(1, uri.length - 1)
+      }
+    } else if (!uri.startsWith("/")) {
+      return url + '/' + uri
+    }
+    url + uri
   }
 
   private def apiKey: String = {
@@ -32,10 +48,12 @@ object Request {
       sys.env("SNACKER_API_KEY")
     } catch {
       case no: java.util.NoSuchElementException =>{
+        // TODO: proper logger
         println("You have to set the SNACKER_API_KEY environment variable!")
         sys.exit(1)
       }
       case e: Exception =>{
+        // TODO: proper logger
         println("Oops! " + e.getMessage)
         sys.exit(1)
       }

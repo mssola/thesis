@@ -34,10 +34,15 @@ object SnackerBuild extends Build {
     ),
 
     libraryDependencies ++= Seq(
+      "com.newzly"  %% "phantom-dsl" % "0.6.0",
+      "net.liftweb" %% "lift-json" % "3.0-M0",
+      "storm" % "storm" % "0.9.0.1" exclude("junit", "junit"),
       "org.scalacheck" %% "scalacheck" % "1.11.4" % "test"
     ),
 
     resolvers ++= Seq(
+      "Typesafe repository snapshots" at "http://repo.typesafe.com/typesafe/snapshots/",
+      "Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/",
       "Clojars Repository" at "http://clojars.org/repo"
     ),
 
@@ -58,8 +63,7 @@ object SnackerBuild extends Build {
   ).settings(
     test := { }
   ).aggregate(
-    snackerCore,
-    snackerInfo
+    snackerCore
   ).dependsOn(
     snackerCore
   )
@@ -79,19 +83,7 @@ object SnackerBuild extends Build {
     fork := true,
 
     libraryDependencies ++= Seq(
-      "storm" % "storm" % "0.9.0.1" exclude("junit", "junit"),
       "org.scalaj" %% "scalaj-http" % "0.3.15"
     )
-  )
-
-  lazy val snackerInfo = module("info").settings(
-    // Storm requires a separate process when executing sbt run.
-    fork := true,
-
-    libraryDependencies ++= Seq(
-      "storm" % "storm" % "0.9.0.1" exclude("junit", "junit")
-    )
-  ).dependsOn(
-    snackerCore
   )
 }
