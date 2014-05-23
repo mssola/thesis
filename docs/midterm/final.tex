@@ -1,0 +1,155 @@
+% Copyright (C) 2014 Miquel Sabaté Solà <mikisabate@gmail.com>
+% This file is licensed under the MIT license.
+% See the LICENSE file.
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage[pdftex]{graphicx}
+\usepackage{wrapfig}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{url}
+
+
+%%
+% New commands.
+
+% Add an extra vertical space.
+\newcommand{\espai}{\par\vspace{5mm}}
+
+% How I do lists.
+\newcommand{\mylist}{
+\begin{itemize}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}}
+\newcommand{\mylistend}{\end{itemize}}
+
+% Needed for the title.
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% So the links in the Table of Contents actually work.
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
+
+%%
+% Hey! Ho! Let's go!
+
+
+\begin{document}
+
+% Title
+\input{./title.tex}
+
+\thispagestyle{empty}
+\tableofcontents{\newpage}
+
+\setcounter{page}{1}
+
+\section{Context}
+
+\subsection{The problem}
+
+Cities around the world can generate a lot of data. This data is usually
+fetched through sensors. Why do these cities fetch all this data? Basically,
+each city can collect and process all this data and convert it to valuable
+information. This information can then be used to improve the city in multiple
+ways. Right know, there is an european effort called {\bf iCity} that groups
+four european cities: London, Barcelona, Genoa and Bologna. These four cities
+have multiple sensors on their streets that collect a wide variety of data:
+
+\mylist
+  \item Air pollution.
+  \item Traffic.
+  \item Irrigation control.
+  \item Pedestrian flow.
+\mylistend
+
+\subsection{The idea}
+
+With all this quantity of data going on, we need a reliable platform that
+integrates everything in an easy way. The {\bf iCity} platform has shown to be
+quite good at integrating all the cities. However, this platform is too raw: it
+just contains the fetched data as-is. It would be more useful if some platform
+could wrap the data from {\bf iCity} and provide more rich and useful services
+and information around it.
+
+My Bachelor's Degree Thesis is about building this platform. This platform will
+be built with the Storm framework. This framework will allow us to process all
+the data from {\bf iCity} and provide rich information in {\bf realtime}.
+
+\subsection{Similar projects}
+
+As part of my Bachelor Degree Thesis, I have done some research on this area. I
+have not found any project that has an identical aim as this platform. However,
+I have to admit that this project overlaps a bit with the iCity platform.
+
+\subsection{Challenges}
+
+It has passed some months now since I started this project. When I started I
+hoped to obtain all the information also from the Barcelona OpenData
+iniciative. However, this iniciative turned out to be not what I expected: it
+is just a repository of static data. Since my platform requires dynamic and
+realtime data, fetching static data is pointlesss. This situation did not
+affect this project greatly, since the iCity platform turned out to be exactly
+what I needed, and, therefore, I did not care about Barcelona's OpenData any
+longer.
+
+Another challenge has been that I am doing this project with the Scala
+programming language. To be honest, I could have done this project with just
+Java, since Storm is available to any programming language that runs on the
+JVM. Scala, however, is more modern than Java, and I am having more fun writing
+Scala code than with Java. So, even if I am new to Scala and it is a challenge,
+it is a challenge in which I am having a lot of fun.
+
+\section{Scheduling}
+
+There have not been any major change to my initial schedule. I have to admit
+that for personal reasons I have started the project a couple of weeks later
+than expected. This means that my final schedule has shifted a bit from my
+original one. This has not resulted into many problems because:
+
+\mylist
+  \item In my orignal Gantt I kept the ``Analysis and design'' and the
+``Development of the core'' phases seperately. I finally merged these two
+phases into one. This turned out to be fine.
+  \item The ``Providing services'' phase has been shorter than expected.
+\mylistend
+
+I have not re-adjusted my methodology of work in order to keep the schedule.
+Moreover, since there are not many alternatives out there in this field, I
+have not spent too much time investigating on other possible designs or
+implementations.
+
+\section{Laws and regulation}
+
+The platform that I am building in my Thesis fetches all the data from {\bf
+iCity}. The iCity platform is an european effort that fetches all the data in a
+safe and lawful way. Therefore, I conclude that my platform is not, in any way,
+violating any european law.
+
+\section{Knowledge learnt at this university}
+
+Lastly, I would like to say that this project has served me greatly to apply
+all the knowledge that I have accumulated during my time at this university.
+More specifically:
+
+\mylist
+  \item {\bf Software design}: I have learnt a lot on designing software at this
+university. In this project I had the oportunity to apply all this knowledge in
+order to design and build the platform itself.
+  \item {\bf Clusters and distributed architectures}: I have taken some courses
+regarding clusters and distributed architectures. These course have proved me
+how important they were.
+\mylistend
+
+\end{document}
