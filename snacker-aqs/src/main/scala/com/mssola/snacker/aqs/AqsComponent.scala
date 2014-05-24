@@ -28,13 +28,16 @@ class AqsComponent extends BaseComponent {
     implicit val formats = DefaultFormats
     val res = parse(devices().asString).extract[List[DeviceJSON]]
     for (d <- res) {
+      println(d)
       val dev = new Device(d.deviceID.toInt, d.name, d.cityID.toInt,
-                           d.longitude.toDouble, d.latitude.toDouble)
+                           d.longitude.toDouble, d.latitude.toDouble,
+                           d.properties)
       Devices.insertDevice(dev)
     }
   }
 
   override def buildTopology(builder: TopologyBuilder) = {
+    // TODO: vals...
     builder.setSpout("aqss", new AqsSpout, 1)
     builder.setBolt("aqsb", new AqsBolt, 8).shuffleGrouping("aqss")
   }

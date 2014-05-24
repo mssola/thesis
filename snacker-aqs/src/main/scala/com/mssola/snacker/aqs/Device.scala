@@ -29,7 +29,8 @@ case class Device(
   name: String,
   cityId: Int,
   longitude: Double,
-  latitude: Double
+  latitude: Double,
+  properties: List[String]
 )
 
 case class DeviceJSON(
@@ -37,15 +38,17 @@ case class DeviceJSON(
   name: String,
   cityID: String,
   longitude: String,
-  latitude: String
+  latitude: String,
+  properties: List[String]
 )
 
 sealed class Devices extends CassandraTable[Devices, Device] {
-  object id extends  IntColumn(this) with PartitionKey[Int]
+  object id extends IntColumn(this) with PartitionKey[Int]
   object name extends StringColumn(this)
-  object cityId extends  IntColumn(this)
-  object longitude extends  DoubleColumn(this)
-  object latitude extends  DoubleColumn(this)
+  object cityId extends IntColumn(this) with Index[Int]
+  object longitude extends DoubleColumn(this)
+  object latitude extends DoubleColumn(this)
+  object properties extends ListColumn[Devices, Device, String](this)
 
   def fromRow(row: Row): Device = {
     Device(
@@ -53,7 +56,8 @@ sealed class Devices extends CassandraTable[Devices, Device] {
       name(row),
       cityId(row),
       longitude(row),
-      latitude(row)
+      latitude(row),
+      properties(row)
     )
   }
 }
@@ -65,6 +69,11 @@ object Devices extends Devices with DBConnector {
       .value(_.cityId, p.cityId)
       .value(_.longitude, p.longitude)
       .value(_.latitude, p.latitude)
+      .value(_.properties, p.properties)
       .future()
+  }
+
+  def idsFromCity(id: Int): ScalaFuture[Seq[(Int, List[String])]] = {
+    select(_.id, _.properties).where(_.cityId eqs id).fetch
   }
 }

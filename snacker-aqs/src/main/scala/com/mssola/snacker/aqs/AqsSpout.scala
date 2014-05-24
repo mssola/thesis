@@ -17,8 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package com.mssola.snacker.aqs
 
-// Java.
+// Scala + Java.
 import java.util.Map
+import scala.concurrent.ExecutionContext.Implicits.global
 
 // Storm.
 import backtype.storm.task.TopologyContext;
@@ -27,20 +28,49 @@ import backtype.storm.tuple.{ Fields, Tuple, Values }
 import backtype.storm.topology.base.{ BaseRichSpout }
 import backtype.storm.topology.{ OutputFieldsDeclarer }
 
+import net.liftweb.json._
+
 class AqsSpout extends BaseRichSpout {
+  var devices = Seq[(Int, List[String])]()
+  var counter = 0
+
+  val globalTime = 5000
+  val requestTime = 200
+
   override def open(conf: Map[_,_], ctx: TopologyContext, col: SpoutOutputCollector) = {
-    // TODO
+    Devices.idsFromCity(3) onSuccess {
+      case devs => {
+        devices = devs
+        counter = devices.length - 1
+      }
+    }
   }
 
-  override def close() = {
-    // TODO
-  }
+//   def getValue(id: Int): Int = {
+//     implicit val formats = DefaultFormats
+//     val req = Request("/devices/$id").asString
+//     val res = parse(req).extract[List[DeviceJSON]]
+//     cj
+//   }
 
   override def nextTuple() = {
-    // TODO
+    // If we've completed a round, sleep for globalTime seconds before
+    // doing another round.
+    if (counter < 0) {
+      counter = devices.length - 1
+      Thread.sleep(globalTime)
+    } else {
+      // Sleep so we don't make too many requests to iCity...
+      Thread.sleep(requestTime)
+    }
+
+    // Fetch the current value for the given device.
+//     val value = getValue(devices(counter))
+    counter -= 1
+    // TODO: send value
   }
 
   override def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-    // TODO
+    declarer.declare(new Fields("value"))
   }
 }

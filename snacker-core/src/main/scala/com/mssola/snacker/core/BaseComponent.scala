@@ -24,7 +24,7 @@ trait BaseComponent {
   def cityId: Int
   def initialize() = {}
 
-  def devices() = Request("/api/cities/${cityId}/devices")
+  def devices() = Request("/api/cities/" + cityId + "/devices")
 
   def buildTopology(builder: TopologyBuilder)
 }

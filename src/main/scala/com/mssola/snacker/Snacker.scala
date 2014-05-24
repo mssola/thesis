@@ -20,7 +20,7 @@ package com.mssola.snacker
 import java.util.UUID
 import org.joda.time.DateTime
 import com.mssola.snacker.core.{ Request, BaseComponent }
-import com.mssola.snacker.aqs.AqsComponent
+import com.mssola.snacker.aqs.{ AqsComponent, Devices }
 import net.liftweb.json._
 
 // Storm. TODO: sort this mess.
@@ -38,7 +38,6 @@ import java.io.{BufferedReader, InputStreamReader}
 
 
 
-
 object Snacker {
   // TODO: try to avoid the new thingie.
   val components: Array[BaseComponent] = Array(new AqsComponent)
@@ -49,6 +48,7 @@ object Snacker {
     // Initialize some settings if specified.
     if (args.length > 0) {
       initialize()
+      return
     }
 
     val builder = new TopologyBuilder
