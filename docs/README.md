@@ -6,6 +6,12 @@ a month and its main goal is to prepare the student for the thesis. The
 workflow of this course was to make some deliveries during the month. The
 course ends with a final report and a presentation.
 
+# Midterm
+
+After spending a couple of months working on this project, it was expected of
+me to write a midterm report. It's not too fancy or detailed, but it did the
+job.
+
 # Report
 
 The report directory contains all the LaTeX files that are needed to generate
