@@ -1,6 +1,6 @@
 *.aux
 *.log
-*.pdf
+main.pdf
 *.gz
 *.backup
 *.bbl
