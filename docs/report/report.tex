@@ -2,8 +2,12 @@
 % This file is licensed under the MIT license.
 % See the LICENSE file.
 
-\documentclass[a4paper,12pt]{article}
+\documentclass[12pt,twoside,openright]{report}
 
+%%
+% Packages
+
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage{indentfirst}
 \usepackage{makeidx}
 \usepackage[pdftex]{graphicx}
@@ -11,6 +15,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{url}
+
+
+% Format of the chapter titles.
+\usepackage{titlesec}
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 
 
 %%
@@ -47,19 +58,23 @@
 
 \begin{document}
 
+% Let's do roman here.
+\pagenumbering{roman}
+\pagestyle{empty}
+
 % Title
 \input{./title.tex}
 
 % Little trick to display the ToC the way I want.
+\tableofcontents
 \thispagestyle{empty}
-\tableofcontents{\newpage}
-
-% Be nice with the real contents.
-\thispagestyle{plain}
-\setcounter{page}{1}
 
 % The preface. Just some small text presenting the project.
 \include{preface}
+\pagestyle{plain}
+
+% Go back to arabic.
+\pagenumbering{arabic}
 
 % All the elements of the project definition.
 \include{project/project}
@@ -81,7 +96,7 @@
 \include{conclusions}
 
 % TODO
-\section{TODO: Bibliography}
+\chapter{TODO: Bibliography}
 
 Finalment ficaré l'apartat de bibliografia del projecte.
 
