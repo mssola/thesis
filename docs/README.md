@@ -25,7 +25,7 @@ The slides for the lecture.
 
 This project makes use of the [Beamr](https://github.com/mssola/beamr)
 package. This package is released under the MIT license and its copyright
-holder it's me.
+holder is me.
 
 Copyright (C) 2014 Miquel Sabaté Solà <mikisabate@gmail.com>
 
