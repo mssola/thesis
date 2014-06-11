@@ -17,6 +17,10 @@ job.
 The report directory contains all the LaTeX files that are needed to generate
 the final report of my Bachelor Degree Thesis.
 
+# Lecture
+
+The slides for the lecture.
+
 # License
 
 This project makes use of the [Beamr](https://github.com/mssola/beamr)
