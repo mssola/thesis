@@ -13,7 +13,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-\documentclass[12pt,twoside,openright]{report}
+\documentclass[12pt,a4paper,twoside,openright]{book}
 
 %%
 % Packages
@@ -69,44 +69,41 @@
 
 \begin{document}
 
-% Let's do roman here.
-\pagenumbering{roman}
 \pagestyle{empty}
+\frontmatter
 
 % Title
 \input{./title.tex}
 
 % Little trick to display the ToC the way I want.
 \tableofcontents
-\thispagestyle{empty}
 
 % The preface. Just some small text presenting the project.
-\include{preface}
-\pagestyle{plain}
+\input{preface}
 
-% Go back to arabic.
-\pagenumbering{arabic}
+\mainmatter
 
 % All the elements of the project definition.
-\include{project/project}
+\input{project/project}
 
 % An overview.
-\include{overview/overview}
+\input{overview/overview}
 
 % The implementation of the project (a.k.a. the real deal).
-\include{implementation/implementation}
+\input{implementation/implementation}
 
 % Section where I talk about what I needed to do in order to complete my
 % thesis. Nothing too fancy...
-\include{development/development}
+\input{development/development}
 
 % Social and environmental impact.
-\include{development/impact}
+\input{development/impact}
 
 % The conclusions of the whole thingie :D
-\include{conclusions}
+\input{conclusions}
 
 % TODO
+\backmatter
 \chapter{TODO: Bibliography}
 
 Finalment ficaré l'apartat de bibliografia del projecte.
