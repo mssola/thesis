@@ -1,4 +1,81 @@
 
-\section{TODO: The Idea}
+\section{The Idea}
 
-I com en tot problema, s'ha de donar una idea, una solució (apartat 2.3).
+\subsection{Brief description}
+\label{sec:description}
+
+My Bachelor Degree Thesis consists on building a platform that addresses the
+first problem described in section~\ref{sec:problem}. In particular, this
+platform is able to:
+
+\begin{enumerate}
+  \itemsep0em
+  \item Fetch and process data in realtime from any given city.
+  \item Provide an easy way to extend it.
+  \item Wrap the iCity platform, providing rich services instead of raw data.
+\end{enumerate}
+
+Thanks to the iCity platform, this platform is already able to respond to a
+wide variety of data types. Some examples being:
+
+\mylist
+  \item Air pollution.
+  \item Traffic.
+  \item Irrigation control.
+  \item Pedestrian flow.
+\mylistend
+
+At first I thought that I could also use data from the {\it
+OpenDataBCN}\footnote{http://opendata.bcn.cat/opendata/en/} initiative.
+However, I later discovered that this initiative only provided static content,
+so I had to drop this idea.
+
+Moreover, this platform has been designed to be as modular and agnostic as
+possible. One of the consequences of this is that we could ideally integrate
+more platforms (apart from the already existing iCity platform) without too much
+trouble. This is not something that I have deeply researched, but it should be
+doable.
+
+\subsection{Wrapping the iCity Platform}
+
+One of the main points of this project is that I am going to wrap the API of
+the iCity Platform with endpoints of my own that will provide rich information
+instead of raw data. This is really important because:
+
+\begin{enumerate}
+  \itemsep0em
+  \item We, as a platform, do not have to worry about the {\bf wide variety} of
+data types, because the iCity platform is already abstracting away this issue.
+  \item It gives more freedom to this {\bf platform}. As I pointed out in
+section~\ref{sec:description}, this platform is not hardly tied to the iCity
+platform. Therefore, even in the unlikely event that iCity gets deprecated or
+dies, this platform can still fetch the data from somewhere else without too
+much trouble. Of course, this other platform has to have the same guarantees as
+iCity. On the other hand, if iCity is up and running, we could even consider
+adding more sources of data to this platform without too much trouble.
+  \item It gives the {\bf end developer} more freedom. This platform does not
+replace iCity in any way. Therefore, developers can target the iCity platform
+and this platform at the same time if they really want to. However, using this
+platform should be enough.
+  \item It is {\bf reliable}. The iCity platform is backed by the EU. This
+means that we can feel safe when using this platform.
+\end{enumerate}
+
+\subsection{Realtime}
+
+This is the core concept behind this project. The real deal here is that all
+the fetched data has to be processed in realtime. This requirement comes from
+the way that the majority of targeted sensors work. Let's consider that we want
+to track the levels of pollution of the air of our city. The levels of
+pollution might vary during the day, and we might want to study how are these
+variations occurring and how can we decrease the levels of air pollution from
+this observation. Therefore, for this case we need to be tracking the levels of
+pollution through the entire day. In this simple case, we realize that
+processing this data in realtime is the only reliable solution to this.
+
+In order to address this major neeed I have chosen the Storm framework. This
+framework is the very base of this platform and it is thanks to this framework
+that this platform can be even considered in the first place. I do not
+want to get into many details in this section, but if you want to read more
+about why I chose Storm, you might want to read the section~\ref{sec:state} of
+this memoir.

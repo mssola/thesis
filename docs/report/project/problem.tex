@@ -1,5 +1,57 @@
 
-\section{TODO: The Problem}
+\section{The Problem}
+\label{sec:problem}
 
-Després de presentar el context, parlaré de quin problema intenta resoldre
-aquest projecte (apartat 2.2).
+As mankind moves forward, new technologies appear and, with them, new
+opportunities. This situation has been beneficial in any sector imaginable,
+especially in the cities.
+
+Cities around the globe have looked at new technologies as a way to improve the
+quality of life of their citizens. First and foremost, cities that are willing
+to improve themselves have to answer questions such as: what do the citizens
+need ? What can be improved ? Is this city efficient enough with the current
+resources ?
+
+A way to answer to these questions is simply to create a net of sensors that
+will generate data. Therefore, these cities have ended up having a huge amount
+of sensors scattered all around their streets. This results in cities having to
+handle an unreasonable amount of {\it raw data}.
+
+And not only that: the kind of the fetched data can vary greatly. Therefore,
+these cities end up having a {\it set} of big flows of data. This chaotic
+situation can be a real headache for cities willing to innovate. Thus, we have
+two main problems:
+
+\begin{enumerate}
+  \itemsep0em
+  \item The large amount of realtime data to be processed.
+  \item The variety of data types to be handled.
+\end{enumerate}
+
+Luckily, the European Union (EU, from now on) has acknowledged the second
+problem. In order to fix this second problem for any european city, the EU has
+built the {\bf iCity} Platform\footnote{http://icityproject.eu/}. This platform
+builds a basic infrastructure and a set of rules in which any european city can
+integrate their services into this joint effort. Right now four cities have
+integrated into this platform: Barcelona, London, Genoa and Bologna. Even if
+this is a rather small list of european cities, more are coming:
+Rome, Helsinki, etc. For this reason, I can be sure that this project is alive
+and ready to take all over Europe. Because of this, I can happily say that our
+second problem is currently being addressed and it is just a matter of time to
+get it fixed.
+
+This is great news, but it does not really fix our first problem: cities still
+have to figure out how to compute all this data being fetched on realtime and
+transform it into valuable information. A valid solution to this problem has to
+address the following points:
+
+\begin{enumerate}
+  \itemsep0em
+  \item It has to be compatible with the iCity API for practical reasons.
+  \item It has to process data in realtime. The vast majority of sensors
+generate data on realtime, so it's important to get this information also in
+realtime.
+  \item It has to be open source. This way cities can rely on this platform
+without getting tied into any private company. Furthermore, this would expand
+the possibilities for this platform for any given city.
+\end{enumerate}
