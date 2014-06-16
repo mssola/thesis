@@ -27,6 +27,7 @@
 \usepackage[english]{babel}
 \usepackage{url}
 \usepackage{eurosym}
+\usepackage{fancyhdr}
 
 
 % Format of the chapter titles.
@@ -34,6 +35,31 @@
 \titleformat{\chapter}
   {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Header and footer.
+\newcommand {\fncyfront}{%
+\fancyhead[RO] {{\footnotesize \rightmark}}
+\fancyfoot[RO] {\thepage}
+\fancyhead[LE] {\footnotesize {\leftmark}}
+\fancyfoot[LE] {\thepage}
+\fancyhead[RE,LO]{}
+\fancyfoot[C]{}
+\renewcommand{\headrulewidth}{0.3 pt}}
+\newcommand {\fncymain }{%
+\fancyhead[RO]{{\footnotesize \rightmark}}
+\fancyfoot[RO]{\thepage}
+\fancyhead[LE]{{\footnotesize \leftmark}}
+\fancyfoot[LE]{\thepage}
+\fancyfoot[C]{}
+\renewcommand {\headrulewidth}{0.3 pt}}
+
+% Don't apply the fancy style on blank pages from the openright option.
+\makeatletter
+\def \cleardoublepage {\clearpage \if@twoside
+\ifodd\c@page
+\else\hbox{}\thispagestyle{empty}\newpage
+\if@twocolumn \hbox {}\newpage \fi \fi \fi }
+\makeatother
 
 
 %%
@@ -44,6 +70,7 @@
 
 % How I do lists.
 \newcommand{\mylist}{
+
 \begin{itemize}
 \setlength{\itemsep}{1pt}
 \setlength{\parskip}{0pt}
@@ -70,14 +97,16 @@
 
 \begin{document}
 
-\pagestyle{empty}
 
 % The front matter is basically: the title, the ToC and the Preface.
+\pagestyle{fancy}
+\fncyfront
 \frontmatter
 \input{./title.tex}
 \tableofcontents
 \input{preface}
 
+\fncymain
 \mainmatter
 
 % All the elements of the project definition.
@@ -88,6 +117,9 @@
 
 % The implementation of the project (a.k.a. the real deal).
 \input{implementation/implementation}
+
+% The cluster.
+\input{hardware/hard}
 
 % Section where I talk about what I needed to do in order to complete my
 % thesis. Nothing too fancy...
