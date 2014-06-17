@@ -1,2 +1,68 @@
  
-\section{TODO: Used Technologies}
+\section{Used Technologies}
+
+\subsection{Linux}
+
+This platform targets Linux. It is the Operating System that I have used to
+develop this platform and the target of this platform. This is because, for a
+variety of reasons, the vast majority of Internet servers use Linux as their
+Operating system. Therefore, it makes perfect sense to use Linux as the target
+operating system.
+
+Note that this platform should also work in MacOS X and other BSD variants.
+However, I have not tested this platform in these operating systems, so I
+cannot claim anything in regards to availability here.
+
+\subsection{Java \& Scala}
+
+Storm is implemented with Java and Clojure. This two languages sit in top of
+the JVM. The JVM is a virtual machine that can be used by any language that
+knows how to produce bytecode for it. This includes languages such as: Java,
+Clojure, Scala, Groovy, etc.
+
+Moreover, all the languages on top of the JVM can share packages. That is, a
+JAR file can be used as a library from any of these languages, regardless of
+the language that was used in the library inside the JAR file. This means that
+languages like Scala can re-use the huge list of Java packages that the
+community has implemented.
+
+This means that in order to implement this platform I could have used any
+language that sits on top of the JVM without any real problem. I have chosen
+Scala for this because:
+
+\mylist
+  \item It is as {\bf fast} as Java, so there is no performance penalties
+because of the language if we compare it with Java.
+  \item It is {\bf modern}. Scala is a more recent language. This means that it
+has had the influence of languages that are more recent than Java. This results
+in Scala having many concepts from functional programming languages, concepts
+from Python, Ruby, etc. It is an absolute pleasure to write Scala code.
+  \item It has a {\bf robust} approach of concurrency. It is far more intuitive
+than Java's lock/unlock mechanisms.
+  \item It is {\bf stable}. Even if it is more recent than Java, Scala is rock
+solid. As an example, big companies like Twitter and Foursquare have lots of
+Scala code running on production.
+\mylistend
+
+\subsection{Storm}
+
+As I have said in the section \ref{sec:state_storm}, the technology that I am
+using to process all the data is Storm.
+
+\subsection{Cassandra}
+
+I do not store a lot of data in this platform, but I do store some data like
+the state of the cluster. To achieve this I use Apache Cassandra. We could
+have chosen any DataBase Management System (DBMS, from now on) here to do the
+job, but I have chosen Cassandra for the following reasons:
+
+\mylist
+  \item It has MapReduce support. This is the main reason that I have chosen
+Cassandra instead any other traditional DBMS like PostgreSQL.
+  \item It is {\bf fault-tolerant}, and supports several replication policies
+across multiple clusters.
+  \item It is {\bf descentralized}. There is no single point of failure.
+  \item Its NoSQL nature has been helpful throughout the development of this
+platform. Moreover, its query language (CQL) is quite similar to standard SQL,
+so there has not been any major learning curve for me to use Cassandra.
+\mylistend
