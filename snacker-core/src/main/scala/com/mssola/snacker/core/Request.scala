@@ -24,12 +24,13 @@ object Request {
   val ApiUrl: String = "http://icity-gw.icityproject.com:8080/developer"
 
   def apply(uri: String) = {
+    // TODO: handle timeout exceptions gracefully
     Http(joinUrl(ApiUrl, uri))
       .param("apikey", apiKey)
       .header("Content-Type", "application/json")
       .header("Charset", "UTF-8")
-      .option(HttpOptions.readTimeout(5000))
-      .option(HttpOptions.connTimeout(5000))
+      .option(HttpOptions.readTimeout(20000))
+      .option(HttpOptions.connTimeout(20000))
   }
 
   // TODO: move this into another class.

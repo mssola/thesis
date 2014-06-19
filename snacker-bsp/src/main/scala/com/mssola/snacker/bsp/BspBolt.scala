@@ -15,23 +15,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.snacker.core
+package com.mssola.snacker.bsp
 
-import backtype.storm.topology.{ TopologyBuilder }
+// Java.
+import java.util.Map
 
-// TODO: move to its own file.
-object Base {
-  val London = 3
-  val Barcelona = 7
-  val Genoa = 8
-  val Bologna = 9
-}
+// Storm.
+import backtype.storm.tuple.{Fields, Tuple, Values}
+import backtype.storm.topology.base.{ BaseBasicBolt }
+import backtype.storm.topology.{ BasicOutputCollector, OutputFieldsDeclarer }
 
-trait BaseComponent {
-  def cityId: Int
-  def initialize() = {}
+class BspBolt extends BaseBasicBolt {
+  def execute(t: Tuple, collector: BasicOutputCollector) = {
+    println(t.getString(0))
+    println(t.getString(1))
+    // TODO
+  }
 
-  def devices() = Request("/api/cities/" + cityId + "/devices")
-
-  def buildTopology(builder: TopologyBuilder)
+  def declareOutputFields(declarer: OutputFieldsDeclarer) = {
+    // TODO
+  }
 }

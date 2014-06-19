@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.snacker.aqs
+package com.mssola.snacker.bsp
 
 // Scala + Java.
 import java.util.Map
@@ -32,7 +32,7 @@ import backtype.storm.topology.{ OutputFieldsDeclarer }
 
 import net.liftweb.json._
 
-class AqsSpout extends BaseRichSpout {
+class BspSpout extends BaseRichSpout {
 //   var _devices = Seq[(Int, List[String])]()
   var collector: SpoutOutputCollector = _
 
@@ -42,29 +42,29 @@ class AqsSpout extends BaseRichSpout {
 //       case devs => { _devices = devs }
 //     }
 
-    AqsSpout.server = new ServerSocket(AqsSpout.PORT)
+    BspSpout.server = new ServerSocket(BspSpout.PORT)
     collector = col
   }
 
   override def nextTuple() = {
-    val socket = AqsSpout.server.accept()
+    val socket = BspSpout.server.accept()
     val stream = new InputStreamReader(socket.getInputStream())
     val in = new BufferedReader(stream)
     val text = in.readLine()
     in.close()
 
     // TODO: check things
-    val ary = text.split("&")
-
-    collector.emit(new Values(ary(0), ary(1), ary(2), ary(3)))
+    println(text)
+    val ary = text.split(":")
+    collector.emit(new Values(ary(0), ary(1)))
   }
 
   override def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-    declarer.declare(new Fields("id", "from", "to", "property"))
+    declarer.declare(new Fields("id", "port"))
   }
 }
 
-object AqsSpout {
-  val PORT = 8001
+object BspSpout {
+  val PORT = 8002
   var server: ServerSocket = _
 }

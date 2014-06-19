@@ -65,10 +65,12 @@ object SnackerBuild extends Build {
     test := { }
   ).aggregate(
     snackerCore,
-    snackerAqs
+    snackerAqs,
+    snackerBsp
   ).dependsOn(
     snackerCore,
-    snackerAqs
+    snackerAqs,
+    snackerBsp
   )
 
   // Helper function that creates a sub-module with the proper format.
@@ -91,6 +93,17 @@ object SnackerBuild extends Build {
   )
 
   lazy val snackerAqs = module("aqs").settings(
+    // Storm requires a separate process when executing sbt run.
+    fork := true,
+
+    libraryDependencies ++= Seq(
+      "net.liftweb" %% "lift-json" % "3.0-M0"
+    )
+  ).dependsOn(
+    snackerCore
+  )
+
+  lazy val snackerBsp = module("bsp").settings(
     // Storm requires a separate process when executing sbt run.
     fork := true,
 

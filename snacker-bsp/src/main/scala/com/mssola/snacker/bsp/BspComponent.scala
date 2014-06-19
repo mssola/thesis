@@ -15,20 +15,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.snacker.aqs
+package com.mssola.snacker.bsp
 
 import com.mssola.snacker.core.{ Base, BaseComponent }
 import net.liftweb.json._
 import backtype.storm.topology.{ TopologyBuilder }
 
-object AqsComponent extends BaseComponent {
-  override def cityId = Base.London
+object BspComponent extends BaseComponent {
+  override def cityId = Base.Barcelona
 
   override def initialize() = {
     implicit val formats = DefaultFormats
     val res = parse(devices().asString).extract[List[DeviceJSON]]
     for (d <- res) {
-      println(d)
       val dev = new Device(d.deviceID.toInt, d.name, d.cityID.toInt,
                            d.longitude.toDouble, d.latitude.toDouble,
                            d.properties)
@@ -38,7 +37,7 @@ object AqsComponent extends BaseComponent {
 
   override def buildTopology(builder: TopologyBuilder) = {
     // TODO: vals...
-    builder.setSpout("aqss", new AqsSpout, 1)
-    builder.setBolt("aqsb", new AqsBolt, 8).shuffleGrouping("aqss")
+    builder.setSpout("bsps", new BspSpout, 1)
+    builder.setBolt("bspb", new BspBolt, 8).shuffleGrouping("bsps")
   }
 }

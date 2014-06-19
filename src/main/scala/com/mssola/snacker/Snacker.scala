@@ -20,7 +20,8 @@ package com.mssola.snacker
 import java.util.UUID
 import org.joda.time.DateTime
 import com.mssola.snacker.core.{ Request, BaseComponent }
-import com.mssola.snacker.aqs.{ AqsComponent, Devices }
+import com.mssola.snacker.aqs.{ AqsComponent }
+import com.mssola.snacker.bsp.{ BspComponent }
 import net.liftweb.json._
 
 // Storm. TODO: sort this mess.
@@ -39,8 +40,7 @@ import java.io.{BufferedReader, InputStreamReader}
 
 
 object Snacker {
-  // TODO: try to avoid the new thingie.
-  val components: Array[BaseComponent] = Array(new AqsComponent)
+  val components: Array[BaseComponent] = Array(AqsComponent, BspComponent)
 
   def initialize() = components foreach (c => c.initialize)
 

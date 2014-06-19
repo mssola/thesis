@@ -27,6 +27,10 @@ import backtype.storm.topology.{ BasicOutputCollector, OutputFieldsDeclarer }
 
 class AqsBolt extends BaseBasicBolt {
   def execute(t: Tuple, collector: BasicOutputCollector) = {
+    println(t.getString(0))
+    println(t.getString(1))
+    println(t.getString(2))
+    println(t.getString(3))
     // TODO
   }
 
