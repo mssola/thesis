@@ -22,6 +22,7 @@ import org.joda.time.DateTime
 import com.mssola.snacker.core.{ Request, BaseComponent }
 import com.mssola.snacker.aqs.{ AqsComponent }
 import com.mssola.snacker.bsp.{ BspComponent }
+import com.mssola.snacker.benchmark.{ BenchmarkComponent }
 import net.liftweb.json._
 
 // Storm. TODO: sort this mess.
@@ -40,7 +41,8 @@ import java.io.{BufferedReader, InputStreamReader}
 
 
 object Snacker {
-  val components: Array[BaseComponent] = Array(AqsComponent, BspComponent)
+  val components: Array[BaseComponent] = Array(AqsComponent, BspComponent,
+                                               BenchmarkComponent)
 
   def initialize() = components foreach (c => c.initialize)
 
