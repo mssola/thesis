@@ -1,0 +1,52 @@
+ 
+\section{The core infrastructure}
+\label{sec:implementation_core}
+
+In this section and in the following sections \ref{sec:implementation_aqs} and
+\ref{sec:implementation_bsp}, I will be talking about the Storm application.
+I have named the Storm application ``Snacker''. That is why all the packages
+name start by ``snacker''.
+
+\subsubsection*{SBT}
+
+The Storm application is built with the SBT\footnote{http://www.scala-sbt.org/}
+toolchain. This toolchain is the {\it de facto} standard for Scala software and
+it is similar to Java's Maven or Ant. The configuration for SBT resides inside
+the project/Build.scala file. This file does the following:
+
+\begin{enumerate}
+  \itemsep0em
+  \item It sets up basic information about this project.
+  \item It tells SBT which version of Scala has to be used.
+  \item It defines the different modules of this application.
+  \item It tells SBT the dependencies for each module.
+\end{enumerate}
+
+SBT is the best toolchain that I have found to build Scala projects, and this
+choice has affected on how the code is structured.
+
+\subsubsection*{The main function and the core package}
+
+The core infrastructure is divided into two Scala packages:
+
+\begin{enumerate}
+  \itemsep0em
+  \item The package {\bf com.mssola.snacker}. This package contains the main
+function and it is located in the ``src'' directory. This main function is
+responsible for:
+    \mylist
+      \item Initializing the application.
+      \item Loading the services.
+      \item Executing the services.
+    \mylistend
+  \item The package {\bf com.mssola.snacker.core}. This package contains a set
+of classes, objects and traits that will be used by the services. It is
+located in the ``snacker-core'' directory. We can think of this package as the
+main {\it library} for the services that are built on top of Storm.
+\end{enumerate}
+
+The most important thing about the com.mssola.snacker.core package is the {\bf
+BaseComponent} object. This object is expected to be subclassed by each of the
+services to be loaded. It is important because this object is responsible for
+initializing each service and setting it up.
+
