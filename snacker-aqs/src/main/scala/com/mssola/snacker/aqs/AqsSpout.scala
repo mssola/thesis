@@ -19,9 +19,8 @@ package com.mssola.snacker.aqs
 
 // Scala + Java.
 import java.util.Map
-import scala.concurrent.ExecutionContext.Implicits.global
 import java.net.ServerSocket
-import java.io.{BufferedReader, InputStreamReader}
+import java.io.{ BufferedReader, InputStreamReader }
 
 // Storm.
 import backtype.storm.task.TopologyContext;
@@ -30,41 +29,53 @@ import backtype.storm.tuple.{ Fields, Tuple, Values }
 import backtype.storm.topology.base.{ BaseRichSpout }
 import backtype.storm.topology.{ OutputFieldsDeclarer }
 
-import net.liftweb.json._
 
+/**
+ * @class AqsSpout
+ *
+ * This is the spout for the AQS service. It just reads the data as given by
+ * the API layer, it then validates the given data and passes this data
+ * to the AqsBolt.
+ */
 class AqsSpout extends BaseRichSpout {
-//   var _devices = Seq[(Int, List[String])]()
   var collector: SpoutOutputCollector = _
 
-
   override def open(conf: Map[_,_], ctx: TopologyContext, col: SpoutOutputCollector) = {
-//     Devices.idsFromCity(3) onSuccess {
-//       case devs => { _devices = devs }
-//     }
-
     AqsSpout.server = new ServerSocket(AqsSpout.PORT)
     collector = col
   }
 
   override def nextTuple() = {
+    // Get the request from the API layer.
     val socket = AqsSpout.server.accept()
     val stream = new InputStreamReader(socket.getInputStream())
     val in = new BufferedReader(stream)
     val text = in.readLine()
     in.close()
 
-    // TODO: check things
+    // Emit what we have got.
     val ary = text.split("&")
-
-    collector.emit(new Values(ary(0), ary(1), ary(2), ary(3)))
+    val p = trimName(ary(3))
+    collector.emit(new Values(ary(0), ary(1), ary(2), p, ary(4)))
   }
 
   override def declareOutputFields(declarer: OutputFieldsDeclarer) = {
-    declarer.declare(new Fields("id", "from", "to", "property"))
+    declarer.declare(new Fields("id", "from", "to", "property", "port"))
   }
+
+  /**
+   * Returns the property name as expected by the iCity API.
+   */
+  def trimName(s: String): String = "urn:air_quality" + s.toUpperCase
 }
 
+/**
+ * The companion object just stores some useful constants.
+ */
 object AqsSpout {
+  // The port that this spout will listen to.
   val PORT = 8001
+
+  // The server socket that will read API instructions.
   var server: ServerSocket = _
 }

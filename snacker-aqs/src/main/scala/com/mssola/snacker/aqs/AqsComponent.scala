@@ -18,17 +18,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.mssola.snacker.aqs
 
 import com.mssola.snacker.core.{ Base, BaseComponent }
-import net.liftweb.json._
 import backtype.storm.topology.{ TopologyBuilder }
+import net.liftweb.json._
 
+
+/**
+ * @class AqsComponent
+ *
+ * Registers the AQS service.
+ */
 object AqsComponent extends BaseComponent {
   override def cityId = Base.London
 
+  /**
+   * On initialization dump all the devices to Cassandra.
+   */
   override def initialize() = {
     implicit val formats = DefaultFormats
     val res = parse(devices().asString).extract[List[DeviceJSON]]
     for (d <- res) {
-      println(d)
       val dev = new Device(d.deviceID.toInt, d.name, d.cityID.toInt,
                            d.longitude.toDouble, d.latitude.toDouble,
                            d.properties)
@@ -36,8 +44,10 @@ object AqsComponent extends BaseComponent {
     }
   }
 
+  /**
+   * Simple topology is simple :)
+   */
   override def buildTopology(builder: TopologyBuilder) = {
-    // TODO: vals...
     builder.setSpout("aqss", new AqsSpout, 1)
     builder.setBolt("aqsb", new AqsBolt, 8).shuffleGrouping("aqss")
   }
