@@ -24,9 +24,11 @@ top -p `pgrep server $|$ tr ``$\setminus$n'' ``,'' $|$ sed 's\/,\$\/\/'`
 
 With this command I have the following results:
 
-\begin{center}
+\begin{figure}[H]
+  \centering
   \includegraphics[scale=0.8]{hardware/images/api.png}
-\end{center}
+  \caption{Running top for the API}\label{fig:top_api}
+\end{figure}
 
 Therefore, it is consuming approximately 4.6 MB of shared memory, which is
 almost nothing. This proves that the API layer is extremely thin. There are
@@ -44,9 +46,11 @@ process of Cassandra is just ``java'', which is not very helpful.
 Anyways, if I perform the same command as in the API layer, I get the following
 results:
 
-\begin{center}
+\begin{figure}[H]
+  \centering
   \includegraphics[scale=0.8]{hardware/images/cassandra.png}
-\end{center}
+  \caption{Running top for Cassandra}\label{fig:top_cassandra}
+\end{figure}
 
 As you can see, Cassandra is quite heavy. In a normal execution Cassandra is
 consuming approximately 400 MB of memory (where 17.3 MB is shared). This is
@@ -66,9 +70,11 @@ performed the following command:
 
 With this I get the following results:
 
-\begin{center}
+\begin{figure}[H]
+  \centering
   \includegraphics[scale=0.8]{hardware/images/cassandra-disk.png}
-\end{center}
+  \caption{Disk usage of Cassandra}\label{fig:top_disk}
+\end{figure}
 
 Cassandra is using a total of 1.1 MB of disk. Moreover, only 604 KB are
 actually the data from the database of this application. This is almost
@@ -83,9 +89,11 @@ Anyways, we can perform the same ``top'' command as in the other components to
 get the CPU usage and the memory consumption. This is what I got after running
 the ``top'' command:
 
-\begin{center}
+\begin{figure}[H]
+  \centering
   \includegraphics[scale=0.8]{hardware/images/storm.png}
-\end{center}
+  \caption{Running top for the Storm application}\label{fig:top_storm}
+\end{figure}
 
 As you can see, now I am running the whole application, and there are two java
 processes. Cassandra is started by systemd, so the user of Cassandra is root.
@@ -144,20 +152,25 @@ One thing that I have realized is that the ``normal execution'' is
 IO-bound. That is, the vast majority of time is waiting for some I/O operation.
 The most notable I/O operations in this platform are:
 
-\mylist
-  \item {\bf HTTP requests}. This I/O operation is certainly the most important
-one. The Storm application basically consists of making a huge amount of HTTP
-requests and then process the fetched data. The processing of this data does
-not require a lot of time, but it is CPU intensive. Since the CPU usage is
-faily low for the Storm application, I think that it is fair to assume that the
-application spends a lot of time waiting for HTTP responses.
-  \item {\bf Cassandra}. This is not done very often, but it matters. Saving
-and restoring the state of the platform requires a handful of I/O operations to
-be performed.
-  \item {\bf Temporary files}. Storm creates on the background a lot of
-temporary files and temporary directories. These temporary files are basically
-logs.
-\mylistend
+\begin{enumerate}
+  \itemsep0em
+  \item {\bf HTTP requests}.
+
+  This I/O operation is certainly the most important one. The Storm application
+basically consists of making a huge amount of HTTP requests and then process the
+fetched data. The processing of this data does not require a lot of time, but it
+is CPU intensive. Since the CPU usage is faily low for the Storm application, I
+think that it is fair to assume that the application spends a lot of time
+waiting for HTTP responses.
+  \item {\bf Cassandra}.
+
+  This is not done very often, but it matters. Saving and restoring the state of
+the platform requires a handful of I/O operations to be performed.
+  \item {\bf Temporary files}.
+
+  Storm creates on the background a lot of temporary files and temporary
+directories. These temporary files are basically logs.
+\end{enumerate}
 
 This has lead me to the conclusion that the ``normal execution'' does not put
 this application into a test when it comes to CPU usage. To prove this, I have
@@ -196,9 +209,11 @@ of IO-bound. We can check this by just running the benchmark for a while.
 When a couple of minutes have passed, I perform the ``top'' command as seen in
 section \ref{sec:requirements}. This time I have got the following results:
 
-\begin{center}
+\begin{figure}[H]
+  \centering
   \includegraphics[scale=0.9]{hardware/images/total.png}
-\end{center}
+  \caption{Running top in the benchmark}\label{fig:top_total}
+\end{figure}
 
 In the figure above we can see how the Storm and Cassandra processes are
 running. The Cassandra process is the one owned by root. If we take a look at
@@ -211,9 +226,11 @@ Now, how is it possible that the Storm application is consuming more than 100\%
 of the CPU ? The CPU of my laptop has four cores. With this into account, it is
 relevant to see tha following picture:
 
-\begin{center}
-  \includegraphics[scale=0.8]{hardware/images/cores.png}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.9]{hardware/images/cores.png}
+  \caption{Load distribution across CPU cores}\label{fig:cpus}
+\end{figure}
 
 The problem with ``top'' is that it is not precise on the CPU usage since it is
 not taking into account that my laptop has four cores. The figure above was

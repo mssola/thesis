@@ -20,6 +20,10 @@
 %       http://en.wikibooks.org/wiki/LaTeX/Title_Creation
 
 \begin{titlepage}
+
+% HACK: good Lord if this is ugly...
+\begin{adjustwidth*}{}{-1cm}
+
 \begin{center}
 
 \textsc{\Large Barcelona School of Informatics}\\[0.5cm]
@@ -49,4 +53,5 @@ Jordi \textsc{Garcia Almiñana}
 {\large \today}
 
 \end{center}
+\end{adjustwidth*}
 \end{titlepage}

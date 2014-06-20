@@ -9,23 +9,23 @@ of London has three services integrated in iCity:
 
 \begin{enumerate}
   \itemsep0em
-  \item {\bf Air Quality Sensors}. This service has sensors deployed all across
+  \item {\bf \ac{AQS}}. This service has sensors deployed all across
 the city of London. These sensors mesure the air quality of the city. More
 specifically, these sensors send data about the levels of: $NO_2$, SO, $O_3$,
 PM10 and PM25.
   \item {\bf TFL Journey Planner}. This service gives access to developers to
-the TFL API.
+the TFL \ac{API}.
   \item {\bf Alert ME}. This platform is a Smart Home platform.
 \end{enumerate}
 
 The second and the third points are not really interesting in our case because
 we need a source that is public and that sends data constantly. Therefore, for
-this project I have picked the Air Quality Sensors platform.
+this project I have picked the \ac{AQS} platform.
 
 \subsubsection*{Design and implementation}
 
-Even if the Air Quality Sensors platform (AQS from now on) is the most complete
-service from London, it has some major drawbacks:
+Even if the \ac{AQS} platform is the most complete service from London, it has
+some major drawbacks:
 
 \mylist
   \item The {\bf update rate} is low. Apparently the sensors from this platform
@@ -36,16 +36,18 @@ of the deployed sensors are not working at all.
 \mylistend
 
 Because of my points above, I have decided that I will not provide a streaming
-API around this platform. Instead, I have built a minimal API around this
-platform that only wraps up the API to provide some extra information.
+\ac{API} around this platform. Instead, I have built a minimal \ac{API} around
+this platform that only wraps up the \ac{API} to provide some extra information.
 
-The Storm application implements support for this platform through the {\bf
-com.mssola.snacker.aqs} Scala package. This package is located in the
+The Storm application implements support for this platform through the Scala
+package: {\bf com.mssola.snacker.aqs}. This package is located in the
 ``snacker-aqs'' directory. The topology of this package is the following:
 
-\begin{center}
+\begin{figure}
+  \centering
   \includegraphics[scale=0.6]{implementation/images/aqs.png}
-\end{center}
+  \caption{AQS Topology}\label{fig:aqs_topology}
+\end{figure}
 
 \begin{itemize}
   \itemsep0em
@@ -57,25 +59,27 @@ receives the data from the AqsSpout. After this, it performs some computations
 and sends the results through a socket.
 \end{itemize}
 
-As I have previously said, this platform will not have a streaming API. This
-means that when the API layer gets the data from the socket, it will close this
-socket instantly. Therefore, the lifecycle of an HTTP request follows these
-steps:
+As I have previously said, this platform will not have a streaming \ac{API}.
+This means that when the \ac{API} layer gets the data from the socket, it will
+close this socket instantly. Therefore, the lifecycle of an HTTP request follows
+these steps:
 
 \begin{enumerate}
   \itemsep0em
-  \item The API layer receives an HTTP request that points to the AQS service.
-  \item The API layer subscribes to the AQS service for this request.
+  \item The \ac{API} layer receives an HTTP request that points to the AQS
+service.
+  \item The \ac{API} layer subscribes to the AQS service for this request.
   \item The AQS module computes the results and sends them through the socket.
-  \item The API layer receives the data and unsubscribes this request from AQS.
-  \item The API layer generates a response with the given data.
+  \item The \ac{API} layer receives the data and unsubscribes this request from
+AQS.
+  \item The \ac{API} layer generates a response with the given data.
 \end{enumerate}
 
-\subsubsection*{API endpoints}
+\subsubsection*{\ac{API} endpoints}
 
-The API for this service is minimal: I have implemented only one endpoint. This
-is because the AQS service is really simple, and there are not a lot of
-options here. This is the endpoint for this service:
+The \ac{API} for this service is minimal: I have implemented only one endpoint.
+This is because the \ac{AQS} service is really simple, and there are not a lot
+of options here. This is the endpoint for this service:
 
 \begin{center}
   /aqs/\{id\}/interval
@@ -83,8 +87,8 @@ options here. This is the endpoint for this service:
 
 The {\bf id} parameter has two possible values: ``all'' or a device id. The
 possibility of getting the value for all the devices in a single request is
-huge step forward in comparison of the iCity API. Besides the ``id'' parameter,
-the developer has to include the following parameters in the request:
+huge step forward in comparison of the iCity \ac{API}. Besides the ``id''
+parameter, the developer has to include the following parameters in the request:
 
 \mylist
   \item The {\bf from} and the {\bf to} parameters. These parameters are UNIX

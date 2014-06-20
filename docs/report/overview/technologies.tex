@@ -3,32 +3,33 @@
 
 \subsection{Linux}
 
-This platform targets Linux. It is the Operating System that I have used to
-develop this platform and the target of this platform. This is because, for a
-variety of reasons, the vast majority of Internet servers use Linux as their
-Operating system. Therefore, it makes perfect sense to use Linux as the target
-operating system.
+This platform targets Linux\footnote{http://www.linux.com/}. It is the Operating
+System that I have used to develop this platform and the target of this
+platform. This is because, for a variety of reasons, the vast majority of
+Internet servers use Linux as their Operating system. Therefore, it makes
+perfect sense to use Linux as the target operating system.
 
-Note that this platform should also work in MacOS X and other BSD variants.
-However, I have not tested this platform in these operating systems, so I
-cannot claim anything in regards to availability here.
+Note that this platform should also work in MacOS X and other \acs{BSD}
+variants. However, I have not tested this platform in these operating systems,
+so I cannot claim anything in regards to availability here.
 
 \subsection{Java \& Scala}
 
-Storm is implemented with Java and Clojure. This two languages sit in top of
-the JVM. The JVM is a virtual machine that can be used by any language that
-knows how to produce bytecode for it. This includes languages such as: Java,
-Clojure, Scala, Groovy, etc.
+Storm is implemented with Java and Clojure\footnote{http://clojure.org/}. This
+two languages sit in top of
+the \ac{JVM}. The \ac{JVM} is a virtual machine that can be used by any language
+that knows how to produce bytecode for it. This includes languages such as:
+Java, Clojure, Scala, Groovy, etc.
 
-Moreover, all the languages on top of the JVM can share packages. That is, a
-JAR file can be used as a library from any of these languages, regardless of
-the language that was used in the library inside the JAR file. This means that
-languages like Scala can re-use the huge list of Java packages that the
-community has implemented.
+Moreover, all the languages on top of the \ac{JVM} can share packages. That is,
+a \acs{JAR} file can be used as a library from any of these languages,
+regardless of the language that was used in the library inside the \acs{JAR}
+file. This means that languages like Scala can re-use the huge list of Java
+packages that the community has implemented.
 
 This means that in order to implement this platform I could have used any
-language that sits on top of the JVM without any real problem. I have chosen
-Scala for this because:
+language that sits on top of the \ac{JVM} without any real problem. I have
+chosen Scala\cite{scala} because:
 
 \mylist
   \item It is as {\bf fast} as Java, so there is no performance penalties
@@ -53,13 +54,13 @@ using to process all the data is Storm.
 \label{sec:cassandra}
 
 I do not store a lot of data in this platform, but I do store some data like
-the state of the cluster. To achieve this I use Apache Cassandra. We could
-have chosen any DataBase Management System (DBMS, from now on) here to do the
+the state of the cluster. To achieve this I use Apache
+Cassandra\cite{cassandra}. We could have chosen any \ac{DBMS} here to do the
 job, but I have chosen Cassandra for the following reasons:
 
 \mylist
-  \item It has MapReduce support. This is the main reason that I have chosen
-Cassandra instead any other traditional DBMS like PostgreSQL.
+  \item It has support for MapReduce. This is the main reason that I have
+chosen Cassandra instead any other traditional \ac{DBMS} like PostgreSQL.
   \item It is {\bf fault-tolerant}, and supports several replication policies
 across multiple clusters.
   \item It is {\bf descentralized}. There is no single point of failure.
@@ -68,7 +69,43 @@ platform. Moreover, its query language (CQL) is quite similar to standard SQL,
 so there has not been any major learning curve for me to use Cassandra.
 \mylistend
 
+One could argue that we do not need any \ac{DBMS} at all: we could just write
+into temporary files or something like that. Even though would have simplified
+things, this is not possible for the following reasons:
+
+\begin{enumerate}
+  \itemsep0em
+  \item This platform can run in a multi-node cluster. Therefore, we would have
+to pick a node among the others to store these temporary files. Doing this is,
+of course, undesirable.
+  \item Even if we pick a node from the cluster to keep these files: what if
+this node melts down ? We cannot risk the integrity of the entire cluster to a
+node that stores temporary files.
+  \item CQL is a nice SQL-like language that gives us more flexibility doing
+some operations on files.
+\end{enumerate}
+
 \subsection{Go}
 \label{sec:go}
 
-To do.
+Go\footnote{http://golang.org/} is a programming language that emphasizes
+concurrent programming. It was first developed by Google but it is now a truly
+open source project. I use Go in the API layer. I have chosen Go for the
+following reasons:
+
+\begin{enumerate}
+  \item Go puts special emphasis on {\bf concurrency}. Concurrency is also a
+big deal in the Storm application. Therefore, it is a perfect match to use a
+language that deals with concurrency and parallelism in an elegant and powerful
+way.
+  \item Go is a {\bf compiled} language. Therefore it is fast.
+  \item It is {\bf simple}. As you can see in the language
+reference\footnote{http://golang.org/ref/spec}, this language is pragmatic and
+simple. Plus, programmers comming from languages like C and C++ will find a lot
+of similarities with this language.
+  \item It is {\bf stable}. Even if it is a fairly recent language, it is rock
+solid. For example, companies like Google, Youtube, Dropbox, Soundcloud, etc.
+are already using Go in production.
+  \item The {\bf net/http} package is simple but really powerful. It abstracts
+away a lot of problems regarding HTTP requests and responses.
+\end{enumerate}

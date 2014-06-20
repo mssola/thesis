@@ -13,14 +13,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-\documentclass[12pt,a4paper,twoside,openright]{book}
-% TODO
-% \documentclass[11pt,a4paper,twoside,openright]{book}
+\documentclass[11pt,a4paper,twoside,openright]{book}
 
 %%
 % Packages
 
-\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[a4paper,width=150mm,top=45mm,bottom=45mm]{geometry}
 \usepackage{indentfirst}
 \usepackage{makeidx}
 \usepackage[pdftex]{graphicx}
@@ -28,8 +26,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{url}
+\usepackage{hyperref}
 \usepackage{eurosym}
 \usepackage{fancyhdr}
+\usepackage{changepage}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[titletoc]{appendix}
+\usepackage[printonlyused,withpage]{acronym}
 
 % Header and footer.
 \newcommand {\fncyfront}{%
@@ -56,9 +60,6 @@
 \if@twocolumn \hbox {}\newpage \fi \fi \fi }
 \makeatother
 
-% TODO
-% \setlength{\parskip}{\baselineskip}%
-
 
 %%
 % New commands.
@@ -79,7 +80,6 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 % So the links in the Table of Contents actually work.
-\usepackage{hyperref}
 \hypersetup{
   colorlinks,
   citecolor=black,
@@ -100,10 +100,21 @@
 \pagestyle{fancy}
 \fncyfront
 \frontmatter
+
 \input{./title.tex}
+\doublespacing
 \tableofcontents
+\singlespacing
+
+\setlength{\parskip}{\baselineskip}
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
 \input{preface}
 
+% Here starts the main matter.
 \fncymain
 \mainmatter
 
@@ -129,10 +140,24 @@
 % The conclusions of the whole thingie :D
 \input{conclusions}
 
-% TODO
-\backmatter
-\chapter{TODO: Bibliography}
+% Appendix
+\begin{appendices}
+\appendixpage
+\noappendicestocpagenum
+\addappheadtotoc
+\input{appendix}
+\end{appendices}
 
-Finalment ficaré l'apartat de bibliografia del projecte.
+\backmatter
+
+% Let there be a bibliography.
+\cleardoublepage
+\bibliographystyle{plain}
+\refstepcounter{chapter}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{report}
+
+% List of acronyms.
+\input{acronyms}
 
 \end{document}

@@ -1,13 +1,21 @@
 
-\section{TODO: Environmental impact}
+\section{Environmental impact}
 
 In the same way that this platform can bring a lot of goodness in the social
-front, it certaintly comes with a cost. In my case the cost is an environmental
+front, it certainly comes with a cost. In my case the cost is an environmental
 impact that cannot be understated.
 
-In this project I will propose an ideal cluster that would be able to run the
-software that I will design. The problem here is that maintaining a cluster
-means the following:
+This platform has to run in a cluster. A cluster, by itself, presents a lot of
+environmental issues that have to be dealt. If we do not do that, and we do not
+care about the environmental impact, it might happen that the cluster that
+executes this platform might be really aggressive towards the environment.
+
+Another way to see it is on the bills. If, for example, this cluster does not
+make a proper use of electricity, bills will be higher.
+
+Regardless how you see it, taking care of the environmental impact is a vital
+aspect of the implementation of this platform. The components that are more
+damaging to the environment are the following:
 
 \mylist
   \item Power supply.
@@ -20,6 +28,8 @@ possible. This means to run the software in ``batches'' or with a very low
 latency. However, this is not possible at all if the cluster has a lot of
 requests, and that is to be expected.
 
-Therefore, in the development of the cluster I will focus most of my efforts
-into keeping the cluster as environmental friendly as possible.
-
+So, the only way to reduce the environmental impact is to build the cluster
+with components that consume as least as possible. The components integrated in
+the cluster have to have strong policies regarding environmental issues.
+Therefore, in this project there is not much that I can do to reduce the
+environmental impact: it only depends on the components of the cluster.

@@ -5,13 +5,13 @@
 \subsubsection*{Barcelona}
 
 Barcelona is one of the cities that are available in the iCity platform. The
-city a Barcelona has invested heavily in the Smart Cities trend. Barcelona has
+city of Barcelona has invested heavily in the Smart Cities trend. Barcelona has
 opened a lot of static data in the OpenDataBCN initiative. Apart from that,
 Barcelona has three platforms integrated with the iCity platform:
 
 \begin{enumerate}
   \itemsep0em
-  \item The {\bf Barcelona Sensor Platform}. This platform allows any developer
+  \item The {\bf \ac{BSP}}. This platform allows any developer
 to access the data sent by sensors that are distributed around the city. This
 platform includes these kind of sensors:
     \mylist
@@ -23,18 +23,18 @@ platform includes these kind of sensors:
     \mylistend
   \item {\bf Smartcitizen Platform}. Smart Citizen is a platform to generate
 participatory processes of people in the cities.
-  \item {\bf IRIS} (Complaints and Suggestions System).
+  \item {\bf IRIS}: the complaints and suggestions system.
 \end{enumerate}
 
-From these three possibilities I have picked the Barcelona Sensor Platform (BSP
-from now on). This is because the Smartcitizen platform is in an experimental
-stage and the IRIS platform is too different to the London endpoint.
+From these three possibilities I have picked the \ac{BSP}. This is because the
+Smartcitizen platform is in an experimental stage and the IRIS platform is too
+different to the London endpoint.
 
 \subsubsection*{Storm}
 
-The Storm application implements the support for BSP in the {\bf
-com.mssola.snacker.bsp} package. This package resides inside the
-``snacker-bsp'' directory.
+The Storm application implements the support for \ac{BSP} in the Scala package:
+{\bf com.mssola.snacker.bsp}. This package resides inside the ``snacker-bsp''
+directory.
 
 My original design consisted of one spout and five bolts (one for each kind of
 sensor). However, I later decided that this was not realistic for the following
@@ -42,7 +42,7 @@ reasons:
 
 \begin{enumerate}
   \itemsep0em
-  \item The iCity API does not make a distinction between the type of data.
+  \item The iCity \ac{API} does not make a distinction between the type of data.
 Therefore, since there is not a real distinction, the data has to be treated
 equally, regardless of the type.
   \item Conceptually, multiple bolts means that we are doing completely
@@ -54,9 +54,11 @@ something else. This is not the case.
 Thus, the final design is fairly similar to the design of the London AQS
 service:
 
-\begin{center}
+\begin{figure}
+  \centering
   \includegraphics[scale=0.6]{implementation/images/bsp.png}
-\end{center}
+  \caption{BSP Topology}\label{fig:bsp_topology}
+\end{figure}
 
 \begin{enumerate}
   \itemsep0em
@@ -66,25 +68,28 @@ this, it cleans up the data and sends it to the BspBolt.
 set of computations. After this, it sends the results to the given socket.
 \end{enumerate}
 
-\subsubsection*{Streaming API}
+\subsubsection*{Streaming \ac{API}}
 
-The update rate of the sensors from the BSP is not very high, but at least it
-is better than London. This is why I have decided that BSP will have a
-streaming API. A streaming API means that a request has the following lifecycle:
+The update rate of the sensors from the \ac{BSP} is not very high, but at least
+it is better than London. This is why I have decided that \ac{BSP} will have a
+streaming \ac{API}. A streaming \ac{API} means that a request has the following
+lifecycle:
 
 \begin{enumerate}
   \itemsep0em
-  \item The API layer receives an HTTP request that points to the BSP service.
-  \item The API layer subscribes to the BSP service for this request.
-  \item The BSP will continously fetch and process data. The processed data
+  \item The \ac{API} layer receives an HTTP request that points to the \ac{BSP}
+service.
+  \item The \ac{API} layer subscribes to the \ac{BSP} service for this request.
+  \item The \ac{BSP} will continously fetch and process data. The processed data
 will be sent through the socket.
-  \item The API layer receives data from the BSP service but does not
+  \item The \ac{API} layer receives data from the \ac{BSP} service but does not
 unsubscribe the socket. That is, it will keep on receiving data indefinitely.
-  \item The API layer creates a response with ``Transfer-Encoding: chunked''.
-This means that the TCP socket established between the client and the API layer
-will not fade away until one of both sides decides to close the connection.
-This will not happen from our end, so it is up to the client to close the
-connection.
+  \item The \ac{API} layer creates a response with ``Transfer-Encoding:
+chunked''.
+This means that the TCP socket established between the client and the \ac{API}
+layer will not fade away until one of both sides decides to close the
+connection. This will not happen from our end, so it is up to the client to
+close the connection.
 \end{enumerate}
 
 From the client's perspective, this means that he can ``subscribe'' to an
