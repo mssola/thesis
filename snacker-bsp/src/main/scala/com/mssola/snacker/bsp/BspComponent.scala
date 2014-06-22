@@ -17,13 +17,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package com.mssola.snacker.bsp
 
-import com.mssola.snacker.core.{ Base, BaseComponent }
-import net.liftweb.json._
+import com.mssola.snacker.core.{ Base, BaseComponent, Device, Devices, DeviceJSON }
 import backtype.storm.topology.{ TopologyBuilder }
+import net.liftweb.json._
 
+
+/**
+ * @class BspComponent
+ *
+ * Registers the BSP Component.
+ */
 object BspComponent extends BaseComponent {
   override def cityId = Base.Barcelona
 
+  /**
+   * On initialization dump all the devices from the BSP service.
+   */
   override def initialize() = {
     implicit val formats = DefaultFormats
     val res = parse(devices().asString).extract[List[DeviceJSON]]
@@ -35,8 +44,10 @@ object BspComponent extends BaseComponent {
     }
   }
 
+  /**
+   * Yet another simple topology :)
+   */
   override def buildTopology(builder: TopologyBuilder) = {
-    // TODO: vals...
     builder.setSpout("bsps", new BspSpout, 1)
     builder.setBolt("bspb", new BspBolt, 8).shuffleGrouping("bsps")
   }

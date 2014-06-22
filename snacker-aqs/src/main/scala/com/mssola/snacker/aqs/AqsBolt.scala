@@ -33,7 +33,7 @@ import scala.concurrent.duration._
 import scala.concurrent.Await
 
 // Core.
-import com.mssola.snacker.core.{ Request }
+import com.mssola.snacker.core.{ Request, Devices }
 
 
 /**

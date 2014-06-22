@@ -15,15 +15,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.mssola.snacker.aqs
+package com.mssola.snacker.core
 
-import com.mssola.snacker.core.DBConnector
 import java.util.UUID
-import scala.concurrent.{ Future => ScalaFuture }
 import org.joda.time.DateTime
 import com.newzly.phantom.Implicits._
+import scala.concurrent.{ Future => ScalaFuture }
 import com.datastax.driver.core.{ ResultSet, Row }
 
+
+/**
+ * Represents an iCity device. This case class is used to map a device
+ * as stored in Cassandra.
+ */
 case class Device(
   id: Int,
   name: String,
@@ -33,6 +37,20 @@ case class Device(
   properties: List[String]
 )
 
+/**
+ * This class is used to map a Property from Cassandra to Scala.
+ */
+case class Property(
+  id: UUID,
+  name: String,
+  value: String,
+  deviceId: Int,
+  createdAt: DateTime
+)
+
+/**
+ * This is a helper class that maps a device as given by JSON responses.
+ */
 case class DeviceJSON(
   deviceID: String,
   name: String,
@@ -42,6 +60,11 @@ case class DeviceJSON(
   properties: List[String]
 )
 
+/**
+ * This is the class that interacts with Cassandra regarding devices.
+ *
+ * It uses the Device case class to map each device.
+ */
 sealed class Devices extends CassandraTable[Devices, Device] {
   object id extends IntColumn(this) with PartitionKey[Int]
   object name extends StringColumn(this)
@@ -50,7 +73,10 @@ sealed class Devices extends CassandraTable[Devices, Device] {
   object latitude extends DoubleColumn(this)
   object properties extends ListColumn[Devices, Device, String](this)
 
-  def fromRow(row: Row): Device = {
+  /**
+   * This method is used by Phantom to map a device to a Device object.
+   */
+  override def fromRow(row: Row): Device = {
     Device(
       id(row),
       name(row),
@@ -62,7 +88,14 @@ sealed class Devices extends CassandraTable[Devices, Device] {
   }
 }
 
+/**
+ * The companion object for the Devices class. This object should be used
+ * to interact with the DB.
+ */
 object Devices extends Devices with DBConnector {
+  /**
+   * Eventually insert the given Device into Cassandra.
+   */
   def insertDevice(p: Device): ScalaFuture[ResultSet] = {
     insert.value(_.id, p.id)
       .value(_.name, p.name)
@@ -73,6 +106,11 @@ object Devices extends Devices with DBConnector {
       .future()
   }
 
+  /**
+   * Fetch the id and the properties of the devices from the given city.
+   *
+   * This method returns a Scala future.
+   */
   def idsFromCity(id: Int): ScalaFuture[Seq[(Int, List[String])]] = {
     select(_.id, _.properties).where(_.cityId eqs id).fetch
   }

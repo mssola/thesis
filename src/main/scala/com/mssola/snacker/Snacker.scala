@@ -17,47 +17,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package com.mssola.snacker
 
-import java.util.UUID
-import org.joda.time.DateTime
-import com.mssola.snacker.core.{ Request, BaseComponent }
+// Scala + Storm.
+import net.liftweb.json._
+import backtype.storm.{ Config, LocalCluster }
+import backtype.storm.topology.{ TopologyBuilder }
+
+// Snacker!
 import com.mssola.snacker.aqs.{ AqsComponent }
 import com.mssola.snacker.bsp.{ BspComponent }
-import net.liftweb.json._
-
-// Storm. TODO: sort this mess.
-import backtype.storm.task.TopologyContext;
-import backtype.storm.{Config, LocalCluster}
-import backtype.storm.spout.SpoutOutputCollector;
-import backtype.storm.tuple.{Fields, Tuple, Values}
-import backtype.storm.topology.base.{BaseBasicBolt, BaseRichSpout}
-import backtype.storm.topology.{TopologyBuilder, BasicOutputCollector, OutputFieldsDeclarer}
-
-// Java thingies. TODO: sort this mess
-import java.util.Map
-import java.net.ServerSocket
-import java.io.{BufferedReader, InputStreamReader}
+import com.mssola.snacker.core.{ BaseComponent }
+import com.mssola.snacker.benchmark.{ BenchmarkComponent }
 
 
-
+/**
+ * This object contains the main class. It loads each component, initializes
+ * them and finally submits the topology.
+ */
 object Snacker {
-  val components: Array[BaseComponent] = Array(AqsComponent, BspComponent)
-
-  def initialize() = components foreach (c => c.initialize)
+  // The components to be loaded always.
+  var components: Array[BaseComponent] = Array(AqsComponent, BspComponent)
 
   def main(args: Array[String]) {
-    // Initialize some settings if specified.
+    // Handle the arguments now.
     if (args.length > 0) {
-      initialize()
-      return
+      args(0) match {
+        case "benchmark" => components ++= Array(BenchmarkComponent)
+        case "init" => components foreach { _.initialize }
+      }
     }
 
+    // Tell each component to build their topology.
     val builder = new TopologyBuilder
     components foreach (c => c.buildTopology(builder))
 
+    // Pretty standard configuration.
     val conf = new Config
     conf.setDebug(true)
     conf.setMaxTaskParallelism(components.size * 2)
 
+    // Finally submit the topology.
     val cluster = new LocalCluster
     cluster.submitTopology("snacker", conf, builder.createTopology)
   }

@@ -17,32 +17,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package com.mssola.snacker.benchmark
 
-
-// TODO: sort this mess
-
-import com.mssola.snacker.core.{ Base, BaseComponent }
-import net.liftweb.json._
-
+// Scala + Java.
 import java.util.Map
-
-// Storm.
-import backtype.storm.tuple.{Fields, Tuple, Values}
-import backtype.storm.topology.base.{ BaseBasicBolt }
-import backtype.storm.topology.{ BasicOutputCollector, OutputFieldsDeclarer }
-import backtype.storm.topology.{ TopologyBuilder }
-
-import scala.concurrent.ExecutionContext.Implicits.global
 import java.net.ServerSocket
-import java.io.{BufferedReader, InputStreamReader, FileWriter}
+import java.io.{ BufferedReader, InputStreamReader, FileWriter }
+import scala.concurrent.ExecutionContext.Implicits.global
+
+// Scala libraries.
+import net.liftweb.json._
+import scalaj.http.{Http, HttpOptions}
 
 // Storm.
 import backtype.storm.task.TopologyContext;
 import backtype.storm.spout.SpoutOutputCollector;
-import backtype.storm.topology.base.{ BaseRichSpout }
+import backtype.storm.topology.{ TopologyBuilder }
+import backtype.storm.tuple.{ Fields, Tuple, Values }
+import backtype.storm.topology.base.{ BaseBasicBolt, BaseRichSpout }
+import backtype.storm.topology.{ BasicOutputCollector, OutputFieldsDeclarer }
 
-import net.liftweb.json._
-import scalaj.http.{Http, HttpOptions}
+// Snacker!
+import com.mssola.snacker.core.{ Base, BaseComponent }
 
+
+/**
+ * The spout used in the benchmark.
+ */
 class BenchmarkSpout extends BaseRichSpout {
   var collector: SpoutOutputCollector = _
 
@@ -60,11 +59,16 @@ class BenchmarkSpout extends BaseRichSpout {
   }
 }
 
+/**
+ * The bolt used in the benchmark.
+ */
 class BenchmarkBolt extends BaseBasicBolt {
   var counter = 0
 
   def execute(t: Tuple, collector: BasicOutputCollector) = {
     val value = t.getString(0)
+
+    // Write to a file to make sure that this guy does something.
     val fw = new FileWriter("/tmp/snacker.txt", true)
     try {
       counter += 1
@@ -78,6 +82,12 @@ class BenchmarkBolt extends BaseBasicBolt {
   }
 }
 
+/**
+ * The benchmark!
+ *
+ * It's nothing too fancy. It just consists of a spout and a bolt passing
+ * numbers and counting them.
+ */
 object BenchmarkComponent extends BaseComponent {
   override def cityId = Base.London
 

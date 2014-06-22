@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package com.mssola.snacker.aqs
 
-import com.mssola.snacker.core.{ Base, BaseComponent }
+import com.mssola.snacker.core.{ Base, BaseComponent, Device, Devices, DeviceJSON }
 import backtype.storm.topology.{ TopologyBuilder }
 import net.liftweb.json._
 
