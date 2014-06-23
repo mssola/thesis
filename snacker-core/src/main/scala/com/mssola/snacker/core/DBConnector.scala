@@ -21,10 +21,27 @@ import scala.concurrent. { blocking, Future }
 import com.datastax.driver.core.{ Cluster, Session }
 import com.newzly.phantom.Implicits._
 
+
+/**
+ * This class does the magic to allow this application to connect with
+ * Cassandra. It assumes that the keyspace is "snacker" and that Cassandra
+ * is listening to the port "9042" (Cassandra's default).
+ */
 object DBConnector {
+  /**
+   * The key space.
+   */
   val keySpace = "snacker"
+
+  /**
+   * The port of Cassandra.
+   */
   val cassandraPort = 9042
 
+  /**
+   * This is our cluster object. With this object we can create
+   * new sessions.
+   */
   lazy val cluster =  Cluster.builder()
     .addContactPoint("localhost")
     .withPort(cassandraPort)
@@ -32,17 +49,26 @@ object DBConnector {
     .withoutMetrics()
     .build()
 
+  /**
+   * A session is a connection to Cassandra.
+   */
   lazy val session = blocking {
     cluster.connect(keySpace)
   }
 }
 
+/**
+ * All the classes that map a resource into Cassandra has to extend this trait.
+ */
 trait DBConnector {
+  // Magic!
   self: CassandraTable[_, _] =>
 
-  def createTable(): Future[Unit] ={
-    create.future() map (_ => ())
-  }
+  /**
+   * Create the table for this resource.
+   */
+  def createTable(): Future[Unit] = create.future() map (_ => ())
 
+  // Magic!
   implicit lazy val datastax: Session = DBConnector.session
 }

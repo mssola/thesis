@@ -17,8 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package com.mssola.snacker.core
 
-import java.util.UUID
-import org.joda.time.DateTime
 import com.newzly.phantom.Implicits._
 import scala.concurrent.{ Future => ScalaFuture }
 import com.datastax.driver.core.{ ResultSet, Row }
@@ -35,17 +33,6 @@ case class Device(
   longitude: Double,
   latitude: Double,
   properties: List[String]
-)
-
-/**
- * This class is used to map a Property from Cassandra to Scala.
- */
-case class Property(
-  id: UUID,
-  name: String,
-  value: String,
-  deviceId: Int,
-  createdAt: DateTime
 )
 
 /**
@@ -113,5 +100,10 @@ object Devices extends Devices with DBConnector {
    */
   def idsFromCity(id: Int): ScalaFuture[Seq[(Int, List[String])]] = {
     select(_.id, _.properties).where(_.cityId eqs id).fetch
+  }
+
+  // TODO
+  def getProperties(id: Int): ScalaFuture[Seq[List[String]]] = {
+    select(_.properties).where(_.id eqs id).fetch
   }
 }

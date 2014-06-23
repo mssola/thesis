@@ -18,10 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.mssola.snacker.bsp
 
 // Scala + Java.
-import java.util.Map
+import scala.concurrent._
 import scala.concurrent.ExecutionContext.Implicits.global
-import java.net.ServerSocket
-import java.io.{BufferedReader, InputStreamReader}
+import java.util.Map
+import java.net.{ Socket, ServerSocket }
+import java.io.{ BufferedReader, InputStreamReader }
 
 // Storm.
 import backtype.storm.task.TopologyContext;
@@ -30,41 +31,76 @@ import backtype.storm.tuple.{ Fields, Tuple, Values }
 import backtype.storm.topology.base.{ BaseRichSpout }
 import backtype.storm.topology.{ OutputFieldsDeclarer }
 
-import net.liftweb.json._
 
+/**
+ * @class BspSpout
+ *
+ * This class is the spout for the BSP service.
+ *
+ * It will run a separate thread in the background that will listen to a
+ * TCP socket in order to fetch subscription requests from the API layer. The
+ * nextTuple function consists on iterating over the subscriptions to update
+ * them in the BspBolt.
+ *
+ * This spout will also handle closed clients gracefully. This spout assumes
+ * that when a client goes down (regardless of the causes), it must unsubscribe
+ * this same client.
+ */
 class BspSpout extends BaseRichSpout {
-//   var _devices = Seq[(Int, List[String])]()
   var collector: SpoutOutputCollector = _
-
+  val list: collection.mutable.Map[String, String] = collection.mutable.Map()
 
   override def open(conf: Map[_,_], ctx: TopologyContext, col: SpoutOutputCollector) = {
-//     Devices.idsFromCity(3) onSuccess {
-//       case devs => { _devices = devs }
-//     }
-
-    BspSpout.server = new ServerSocket(BspSpout.PORT)
     collector = col
+
+    /*
+     * Run a server in the background. This server will listen to the API
+     * layer for new subscriptions.
+     */
+    future {
+      val server = new ServerSocket(8002)
+
+      // Hey, listen!
+      while (true) {
+        val socket = server.accept()
+        val stream = new InputStreamReader(socket.getInputStream())
+        val in = new BufferedReader(stream)
+        val text = in.readLine()
+        in.close()
+
+        // Parse the parameters.
+        val ary = text.split("&")
+        if (ary.length == 2 && ary(0) == "destroy") {
+          list -= ary(1)
+        } else if (ary.length == 3 && ary(0) == "create") {
+          list(ary(1).trim) = ary(2).trim
+        }
+      }
+    }
   }
 
   override def nextTuple() = {
-    val socket = BspSpout.server.accept()
-    val stream = new InputStreamReader(socket.getInputStream())
-    val in = new BufferedReader(stream)
-    val text = in.readLine()
-    in.close()
+    Thread.sleep(2000)
 
-    // TODO: check things
-    println(text)
-    val ary = text.split(":")
-    collector.emit(new Values(ary(0), ary(1)))
+    // Update all the open sockets.
+    list foreach { case (id, port) =>
+      try {
+        // Check that the connection is still open.
+        val socket = new Socket("localhost", port.toInt)
+        socket.close()
+
+        // Emit the data.
+        collector.emit(new Values(id, port))
+      } catch {
+        case e: java.net.ConnectException => {
+          // This means that the client has closed the connection: unsubscribe!
+          list -= id
+        }
+      }
+    }
   }
 
   override def declareOutputFields(declarer: OutputFieldsDeclarer) = {
     declarer.declare(new Fields("id", "port"))
   }
-}
-
-object BspSpout {
-  val PORT = 8002
-  var server: ServerSocket = _
 }

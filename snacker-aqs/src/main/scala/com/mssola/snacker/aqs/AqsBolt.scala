@@ -45,7 +45,7 @@ import com.mssola.snacker.core.{ Request, Devices }
  */
 class AqsBolt extends BaseBasicBolt {
   /**
-   * The execute function calls the iCity APi with the values given by input
+   * The execute function calls the iCity API with the values given by input
    * in order to complete the API call.
    */
   override def execute(t: Tuple, collector: BasicOutputCollector) = {
