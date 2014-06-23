@@ -20,20 +20,41 @@ package com.mssola.snacker.core
 import java.io.InputStreamReader
 import scalaj.http.{Http, HttpOptions}
 
+
+/**
+ * This object is the one to be used when performing a request to the
+ * iCity API.
+ *
+ * The only public function is the apply function. It handles timeouts,
+ * the content-type, the charset, etc.
+ */
 object Request {
+  // The base URL to the iCity API.
   val ApiUrl: String = "http://icity-gw.icityproject.com:8080/developer"
 
+  // The timeout to be used in the apply function.
+  val Timeout = 20000
+
+  /**
+   * Perform an HTTP request to the given URI.
+   *
+   * The timeout being used is the one set at the Request.Timeout constant.
+   * NOTE: This function does not handle timeout exceptions.
+   * NOTE: this function will kill the application if the "SNACKER_API_KEY"
+   * environment variable is not set.
+   */
   def apply(uri: String) = {
-    // TODO: handle timeout exceptions gracefully
     Http(joinUrl(ApiUrl, uri))
       .param("apikey", apiKey)
       .header("Content-Type", "application/json")
       .header("Charset", "UTF-8")
-      .option(HttpOptions.readTimeout(20000))
-      .option(HttpOptions.connTimeout(20000))
+      .option(HttpOptions.readTimeout(Request.Timeout))
+      .option(HttpOptions.connTimeout(Request.Timeout))
   }
 
-  // TODO: move this into another class.
+  /**
+   * Returns both of the given parameters joint by a slash.
+   */
   private def joinUrl(url: String, uri: String): String = {
     if (url.endsWith("/")) {
       if (uri.startsWith("/")) {
@@ -45,6 +66,11 @@ object Request {
     url + uri
   }
 
+  /**
+   * Returns the API key.
+   *
+   * If the "SNACKER_API_KEY" is not set, the application will be killed.
+   */
   private def apiKey: String = {
     try {
       sys.env("SNACKER_API_KEY")
