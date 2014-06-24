@@ -26,7 +26,6 @@ object SnackerBuild extends Build {
     version := "0.1",
 
     scalaVersion := "2.10.4",
-    crossScalaVersions := Seq("2.9.3", "2.10.4", "2.11.0"),
     scalacOptions ++= Seq(
       "-unchecked",
       "-deprecation",
@@ -35,7 +34,7 @@ object SnackerBuild extends Build {
 
     /* TODO: Remove json from the shared settings */
     libraryDependencies ++= Seq(
-      "com.newzly"  %% "phantom-dsl" % "0.6.0",
+      "com.newzly"  %% "phantom-dsl" % "0.8.0",
       "net.liftweb" %% "lift-json" % "3.0-M0",
       "storm" % "storm" % "0.9.0.1" exclude("junit", "junit"),
       "org.scalacheck" %% "scalacheck" % "1.11.4" % "test"

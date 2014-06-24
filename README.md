@@ -71,10 +71,15 @@ might want to perform the following command:
 Note that this will run the application after the initialization process has
 succeeded.
 
+To run this project you need a version of Scala from the 2.10.x branch.
+Moreover, I'm using SBT's 0.13 version, but I haven't tested any other versions
+really. This application works in both OpenJDK7 and OracleJDK7.
+
 ## The API layer
 
 The API layer is written in the Go programming language. All the code for
-the API layer is contained in the file `api/server.go`.
+the API layer is contained in the file `api/server.go`. This file requires
+Go 1.1 or higher.
 
 If you don't have Go installed, you might find really useful the instructions
 given in the [website](http://golang.org/doc/install) of the project. To
