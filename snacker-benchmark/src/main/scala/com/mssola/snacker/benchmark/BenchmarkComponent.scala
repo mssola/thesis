@@ -22,9 +22,6 @@ import java.util.Map
 import java.net.ServerSocket
 import java.io.{ BufferedReader, InputStreamReader, FileWriter }
 import scala.concurrent.ExecutionContext.Implicits.global
-
-// Scala libraries.
-import net.liftweb.json._
 import scalaj.http.{Http, HttpOptions}
 
 // Storm.
