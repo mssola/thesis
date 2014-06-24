@@ -25,7 +25,7 @@ import backtype.storm.topology.{ TopologyBuilder }
 // Snacker!
 import com.mssola.snacker.aqs.{ AqsComponent }
 import com.mssola.snacker.bsp.{ BspComponent }
-import com.mssola.snacker.core.{ BaseComponent }
+import com.mssola.snacker.core.{ BaseComponent, Devices }
 import com.mssola.snacker.benchmark.{ BenchmarkComponent }
 
 
@@ -43,6 +43,7 @@ object Snacker {
       args(0) match {
         case "benchmark" => components ++= Array(BenchmarkComponent)
         case "init" => components foreach { _.initialize }
+        case "migrate" => Devices.createTable()
       }
     }
 

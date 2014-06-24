@@ -12,6 +12,22 @@ used for my Thesis.
 In order to have a better understanding of my Thesis, I recommend reading
 my final report. This report can be found inside the `docs/report` directory.
 
+## The iCity Platform
+
+This application performs all the requests to the [iCity](http://icity-devp.icityproject.com/)
+Project. This means that before doing anything you have to be a registered
+developer of the platform.
+
+The signup process is quite easy. After that you will receive and API token.
+Finally, you'll need to set the `SNACKER_API_KEY` environment variable
+with the value of your API key. In the root directory of this project you'll
+find the `env.sh` file. I usually have here my API token and when I want
+to run this platform I just perform the following commnad:
+
+    $ source env.sh
+
+This is all you need to know in regards to the iCity API.
+
 ## The Storm application
 
 The Storm application is distributed into multiple directories:
@@ -44,6 +60,7 @@ command:
     $ sbt
     > run migrate
 
+This migration will create the `devices` in a new keyspace named `snacker`.
 After this, you still need to initialize this table. In order to do this you
 might want to perform the following command:
 
