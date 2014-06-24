@@ -1,4 +1,4 @@
-# Snacker [![Build Status](https://travis-ci.org/mssola/thesis.svg?branch=master)](https://travis-ci.org/mssola/thesis)
+# Thesis [![Build Status](https://travis-ci.org/mssola/thesis.svg?branch=master)](https://travis-ci.org/mssola/thesis)
 
 ## About this repository
 
@@ -30,7 +30,8 @@ This is all you need to know in regards to the iCity API.
 
 ## The Storm application
 
-The Storm application is distributed into multiple directories:
+The Storm application is distributed into multiple directories (as you will
+probably guess, this application is called "snacker" internally :P):
 
 * The `src` directory contains the executable.
 * The `snacker-core` directory contains the common library being used by the
@@ -72,7 +73,18 @@ succeeded.
 
 ## The API layer
 
-TO do
+The API layer is written in the Go programming language. All the code for
+the API layer is contained in the file `api/server.go`.
+
+If you don't have Go installed, you might find really useful the instructions
+given in the [website](http://golang.org/doc/install) of the project. To
+build the API layer you just need to perform the following command inside the
+`api` directory:
+
+    $ go build server.go
+
+This will create the `server` executable file. Run this executable file to
+start the API layer. Pretty easy, isn't it? :)
 
 # License
 
@@ -90,4 +102,3 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
