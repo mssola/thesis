@@ -32,10 +32,8 @@ object SnackerBuild extends Build {
       "-Yresolve-term-conflict:package"
     ),
 
-    /* TODO: Remove json from the shared settings */
     libraryDependencies ++= Seq(
       "com.newzly"  %% "phantom-dsl" % "0.8.0",
-      "net.liftweb" %% "lift-json" % "3.0-M0",
       "storm" % "storm" % "0.9.0.1" exclude("junit", "junit"),
       "org.scalacheck" %% "scalacheck" % "1.11.4" % "test"
     ),
@@ -98,6 +96,7 @@ object SnackerBuild extends Build {
     fork := true,
 
     libraryDependencies ++= Seq(
+      "net.liftweb" %% "lift-json" % "3.0-M0",
       "net.liftweb" %% "lift-json" % "3.0-M0"
     )
   ).dependsOn(
@@ -109,6 +108,7 @@ object SnackerBuild extends Build {
     fork := true,
 
     libraryDependencies ++= Seq(
+      "net.liftweb" %% "lift-json" % "3.0-M0",
       "net.liftweb" %% "lift-json" % "3.0-M0"
     )
   ).dependsOn(
@@ -117,11 +117,7 @@ object SnackerBuild extends Build {
 
   lazy val snackerBenchmark = module("benchmark").settings(
     // Storm requires a separate process when executing sbt run.
-    fork := true,
-
-    libraryDependencies ++= Seq(
-      "net.liftweb" %% "lift-json" % "3.0-M0"
-    )
+    fork := true
   ).dependsOn(
     snackerCore
   )
