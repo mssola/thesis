@@ -1,8 +1,61 @@
 # Snacker [![Build Status](https://travis-ci.org/mssola/thesis.svg?branch=master)](https://travis-ci.org/mssola/thesis)
 
-Under construction.
+## About this repository
 
-Document about SNACKER_API_KEY.
+This repository holds all the files that form my Bachelor Degree Thesis. It
+contains everything: documentation, the different layers of software, etc.
+
+The documentation has been written in LaTeX and it's under the `docs`
+directory. The rest of the directories are the source code that I have
+used for my Thesis.
+
+In order to have a better understanding of my Thesis, I recommend reading
+my final report. This report can be found inside the `docs/report` directory.
+
+## The Storm application
+
+The Storm application is distributed into multiple directories:
+
+* The `src` directory contains the executable.
+* The `snacker-core` directory contains the common library being used by the
+other components.
+* The `snacker-aqs` and the `snacker-bsp` directories contain the services
+that I have built for my Thesis.
+* The `snacker-benchmark` directory contains a benchmark that is optionally
+activated.
+* The `project` directory contain all the configuration files to build and run
+the Storm application.
+* The `storm-example` is an example used in my final report as an appendix.
+
+I have written this application with Scala and I have used SBT as my main tool
+of development. Therefore, if you want to build and run this application, you
+should download and install SBT first. You can find instructions on how to do
+this in SBT's webpage. Once you've got SBT, you can build and run this project
+by performing the following commands:
+
+    $ sbt run
+
+Before going any further, note that this application uses Cassandra. Therefore,
+the first thing that you have to do is to have Cassandra running. After
+this, if it's the first time that you're running this application, you will
+need to create the `devices` table. In order to do this, perform the following
+command:
+
+    $ sbt
+    > run migrate
+
+After this, you still need to initialize this table. In order to do this you
+might want to perform the following command:
+
+    $ sbt
+    > run init
+
+Note that this will run the application after the initialization process has
+succeeded.
+
+## The API layer
+
+TO do
 
 # License
 
