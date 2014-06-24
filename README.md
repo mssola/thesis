@@ -20,13 +20,14 @@ developer of the platform.
 
 The signup process is quite easy. After that you will receive and API token.
 Finally, you'll need to set the `SNACKER_API_KEY` environment variable
-with the value of your API key. In the root directory of this project you'll
-find the `env.sh` file. I usually have here my API token and when I want
-to run this platform I just perform the following commnad:
+with the value of your API key. I usually have this value in an `env.sh` file
+in the root of the project. This way, when I want to run this platform I
+just perform the following commnad:
 
     $ source env.sh
 
-This is all you need to know in regards to the iCity API.
+Note that the `.gitignore` file already ignores a file named `env.sh` in the
+root directory.
 
 ## The Storm application
 
