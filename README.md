@@ -41,7 +41,7 @@ other components.
 that I have built for my Thesis.
 * The `snacker-benchmark` directory contains a benchmark that is optionally
 activated.
-* The `project` directory contain all the configuration files to build and run
+* The `project` directory contains all the configuration files to build and run
 the Storm application.
 * The `storm-example` is an example used in my final report as an appendix.
 
