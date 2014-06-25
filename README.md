@@ -63,9 +63,9 @@ commands:
     $ sbt
     > run migrate
 
-This migration will create the `devices` in a new keyspace named `snacker`.
-After this, you still need to initialize this table. In order to do this you
-might want to perform the following commands:
+This migration will create the `devices` table in a new keyspace named
+`snacker`. After this, you still need to initialize this table. In order to
+do this you might want to perform the following commands:
 
     $ sbt
     > run init
