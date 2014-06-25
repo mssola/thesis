@@ -49,22 +49,23 @@ I have written this application with Scala and I have used SBT as my main tool
 of development. Therefore, if you want to build and run this application, you
 should download and install SBT first. You can find instructions on how to do
 this in SBT's webpage. Once you've got SBT, you can build and run this project
-by performing the following commands:
+by performing the following command:
 
-    $ sbt run
+    $ sbt
+    > run
 
 Before going any further, note that this application uses Cassandra. Therefore,
 the first thing that you have to do is to have Cassandra running. After
 this, if it's the first time that you're running this application, you will
 need to create the `devices` table. In order to do this, perform the following
-command:
+commands:
 
     $ sbt
     > run migrate
 
 This migration will create the `devices` in a new keyspace named `snacker`.
 After this, you still need to initialize this table. In order to do this you
-might want to perform the following command:
+might want to perform the following commands:
 
     $ sbt
     > run init
