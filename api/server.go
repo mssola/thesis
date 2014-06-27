@@ -42,7 +42,13 @@ var (
 // parameter to be passed tells this function if this is a streaming endpoint
 // or not.
 func storm(w http.ResponseWriter, pars string, port, target int, streaming bool) {
-	c := make(chan int)
+	// Setup two channels that will allow us to communicate with the
+	// goroutine being called here. The channel "c" is used by the goroutine
+	// to tell this function that it has finished. The "stop" channel is
+	// used by this function to force the goroutine to shut down.
+	c, stop := make(chan int), make(chan int)
+
+	// Setup the listener.
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
 		fmt.Printf("Could not connect %v!", err)
@@ -69,10 +75,13 @@ func storm(w http.ResponseWriter, pars string, port, target int, streaming bool)
 			case <-clientClosed:
 				c <- 1
 				return
+			case <-stop:
+				c <- 1
+				return
 			default:
 				conn, err := listener.Accept()
 				if err != nil {
-					fmt.Printf("Something wrong happenned: %v", err)
+					fmt.Printf("Something wrong happenned: %v\n", err)
 					c <- 1
 					return
 				}
@@ -89,13 +98,17 @@ func storm(w http.ResponseWriter, pars string, port, target int, streaming bool)
 
 	// Send Storm the port and the id.
 	addr, _ := net.ResolveTCPAddr("tcp", fmt.Sprintf("localhost:%v", target))
-	conn, err := net.DialTCP("tcp", nil, addr)
-	_, err = conn.Write([]byte(fmt.Sprintf("%v&%v", pars, port)))
-	if err != nil {
-		fmt.Printf("We could not open the TCP socket")
-		return
+	if conn, err := net.DialTCP("tcp", nil, addr); err == nil {
+		_, err = conn.Write([]byte(fmt.Sprintf("%v&%v", pars, port)))
+		if err != nil {
+			fmt.Printf("We could not open the TCP socket.\n")
+			stop <- 1
+		}
+		conn.Close()
+	} else {
+		fmt.Printf("Could not establish connection.\n")
+		stop <- 1
 	}
-	conn.Close()
 
 	// Wait until we're sure that we've got everything from Storm.
 	<-c
