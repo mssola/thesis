@@ -16,6 +16,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -30,6 +31,13 @@ var (
 	// The base TCP port to be used.
 	basePort = 3000
 )
+
+func jsonError(w http.ResponseWriter) {
+	msg := map[string]string{"msg": "Server Internal Error"}
+	str, _ := json.Marshal(msg)
+	fmt.Fprintf(w, string(str))
+	w.(http.Flusher).Flush()
+}
 
 // Perform a call to the Storm application. The connection will be kept open
 // if it is streaming and the responses will be flushed out as they come. At
@@ -82,6 +90,7 @@ func storm(w http.ResponseWriter, pars string, port, target int, streaming bool)
 				conn, err := listener.Accept()
 				if err != nil {
 					fmt.Printf("Something wrong happenned: %v\n", err)
+					jsonError(w)
 					c <- 1
 					return
 				}
@@ -97,22 +106,26 @@ func storm(w http.ResponseWriter, pars string, port, target int, streaming bool)
 	}()
 
 	// Send Storm the port and the id.
+	// TODO: can be simplified.
 	addr, _ := net.ResolveTCPAddr("tcp", fmt.Sprintf("localhost:%v", target))
 	if conn, err := net.DialTCP("tcp", nil, addr); err == nil {
 		_, err = conn.Write([]byte(fmt.Sprintf("%v&%v", pars, port)))
 		if err != nil {
 			fmt.Printf("We could not open the TCP socket.\n")
+			jsonError(w)
 			stop <- 1
 		}
 		conn.Close()
 	} else {
 		fmt.Printf("Could not establish connection.\n")
+		jsonError(w)
 		stop <- 1
 	}
 
 	// Wait until we're sure that we've got everything from Storm.
 	<-c
 	listener.Close()
+	fmt.Printf("In the end!\n")
 }
 
 // The handler for the AQS service. It forms the parameters and calls
