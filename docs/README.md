@@ -27,7 +27,7 @@ This project makes use of the [Beamr](https://github.com/mssola/beamr)
 package. This package is released under the MIT license and its copyright
 holder is me.
 
-Copyright (C) 2014 Miquel Sabaté Solà <mikisabate@gmail.com>
+Copyright (C) 2014-2015 Miquel Sabaté Solà <mikisabate@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
