@@ -7,7 +7,7 @@ This repository holds files for various thesis I've written. These thesis are di
 
 ## License
 
-Unless stated otherwise, every piece of source code is licensed under the GPLv3:
+Unless stated otherwise, every piece of source code is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.txt):
 
 ```
 Copyright (C) 2014-2020 Miquel Sabaté Solà <mikisabate@gmail.com>
