@@ -1,0 +1,98 @@
+#+AUTHOR: Miquel Sabaté Solà
+#+DATE: dilluns 1 de juliol de 2019
+#+DESCRIPTION: Treball de fi de grau
+#+KEYWORDS:
+#+LANGUAGE: ca
+
+# General org-mode options. Picked so they don't conflict with the end LaTeX
+# intermediary files.
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:nil c:nil creator:nil d:(not LOGBOOK) date:nil title:nil e:t
+#+OPTIONS: email:nil f:t inline:t num:t p:nil pri:nil stat:t tags:nil
+#+OPTIONS: tasks:t tex:t timestamp:t toc:nil todo:t |:t
+
+#+PROPERTY: writer-main-file:t
+
+# Irrelevant for this project, but let's be safe.
+#+SELECT_TAGS: export
+
+# Top-level sections are actually chapters, not parts.
+#+begin_src emacs-lisp :exports results :results none :eval export
+(add-to-list 'org-latex-classes
+    '("mybook"
+      "\\documentclass[11pt, a4paper, oneside]{book}"
+      ;; ("\\part{%s}" . "\\part*{%s}")
+      ("\\chapter{%s}" . "\\chapter*{%s}")
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+#+end_src
+
+# In org-mode is better to handle this here than in a separate LaTeX
+# definition. Let's do it now.
+#+LATEX_CLASS: mybook
+
+# Let's include header files now.
+#+LATEX_HEADER: \input{./include/header.tex}
+
+#
+# Front matter: the title, the Table of Contents and the preface.
+#
+
+# Reset and use the fancy style. It will be defined for each matter.
+#+LATEX: \pagestyle{fancy}
+#+LATEX: \fancyhf{}
+
+# For the front matter, just show page numbers. Also, get rid off the head rule
+# here so it's never used again.
+#+LATEX: \cfoot{\footnotesize \thepage}
+#+LATEX: \renewcommand{\headrulewidth}{0.0pt}
+
+#+LATEX: \frontmatter
+
+# The title is completely written in LaTeX. Let's include it now.
+#+LATEX: \input{./include/title.tex}
+
+# Add a creative commons page.
+#+LATEX: \input{./include/cc.tex}
+
+# Quotes.
+#+LATEX: \thispagestyle{empty}
+#+LATEX: \setlength\epigraphwidth{.4\textwidth}
+#+LATEX: \epigraph{\itshape Una cita súper profunda.}{\textsc{Montserrat Roig, \textit{Algun llibre}}}
+#+LATEX: \epigraph{\itshape I una dedicatòria i agraïment}
+#+LATEX: \cleardoublepage
+#+LATEX: \newpage
+
+# Lastly, we want to include the abstract.
+#+INCLUDE: "./parts/abstract.org"
+#+LATEX: \newpage
+
+# Tweak some settings around the ToC and finally display it.
+#+LATEX: \renewcommand{\contentsname}{\Large\scshape{Índex}}
+#+LATEX: \renewcommand{\cftchapfont}{\scshape}
+#+LATEX: \renewcommand\cftchappagefont{\scshape\normalfont}
+#+LATEX: \tableofcontents
+
+#
+# Main matter: the main bulk.
+#
+
+# Setup the fancy header for this matter.
+#+LATEX: \fancyhead[LE]{\footnotesize Nom del treball}
+#+LATEX: \fancyhead[LO]{\footnotesize Nom del treball}
+#+LATEX: \fancyhead[RE]{\footnotesize Miquel Sabaté Solà}
+#+LATEX: \fancyhead[RO]{\footnotesize Miquel Sabaté Solà}
+
+# Main matter is written into a single org document.
+#+LATEX: \mainmatter
+#+INCLUDE: "./parts/document.org"
+
+#
+# Back matter: bibliography
+#
+
+#+LATEX: \newpage
+#+LATEX: \backmatter
+
+Bibliografia.

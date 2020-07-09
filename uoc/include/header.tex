@@ -1,0 +1,34 @@
+% More stuff for the geometry of the page (e.g. 1.5 line spacing).
+\usepackage[a4paper, portrait, margin=1in]{geometry}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{newtxtext,newtxmath}
+
+% Language and input details.
+\usepackage[catalan]{babel}
+\usepackage[utf8]{inputenc}
+
+% Do not do funny things with links.
+\usepackage{xcolor}
+\hypersetup{colorlinks=false, pdfborderstyle={/S/U/W 1}, urlbordercolor=gray, pdfborder=0 0 1}
+\hypersetup{hidelinks}
+
+% Simple tool for epigraphs.
+\usepackage{epigraph}
+\setlength\epigraphrule{0pt}
+\setlength\epigraphwidth{.6\textwidth}
+
+% Fancy headers and footers.
+\usepackage{fancyhdr}
+
+% Redefine the plain page style with fancy header in it.
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\footnotesize \thepage}%
+}
+
+% Used to tweak various settings around titles (e.g. the format of chapter titles).
+\usepackage{titlesec}
+\titleformat{\chapter}{\scshape\large}{\thechapter.}{20pt}{\large\scshape}
+
+% Used to tweak the style of the ToC.
+\usepackage{tocloft}
