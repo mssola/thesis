@@ -2,8 +2,8 @@
 
 This repository holds the files for some thesis I've written. These thesis are distributed in two directories:
 
-- [upc](./upc): Bachelor's degree in Computer Science at the Facultat d'Informàtica de Barcelona - Universitat Politècnica de Catalunya (FIB-UPC).
-- [uoc](./uoc): Bachelor's degree in Catalan Language and Literature at the Universitat Oberta de Catalunya.
+- [upc](./upc): Bachelor's degree in Computer Science at the [Facultat d'Informàtica de Barcelona - Universitat Politècnica de Catalunya (FIB-UPC)](https://www.fib.upc.edu/).
+- [uoc](./uoc): Bachelor's degree in Catalan Language and Literature at the [Universitat Oberta de Catalunya](https://www.uoc.edu).
 
 ## License
 
