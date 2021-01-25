@@ -34,6 +34,7 @@
 
 # Let's include header files now.
 #+LATEX_HEADER: \input{./include/header.tex}
+#+LATEX_HEADER: \input{./include/commands.tex}
 
 #
 # Front matter: the title, the Table of Contents and the preface.
@@ -79,8 +80,8 @@
 #
 
 # Setup the fancy header for this matter.
-#+LATEX: \fancyhead[LE]{\footnotesize Nom del treball}
-#+LATEX: \fancyhead[LO]{\footnotesize Nom del treball}
+#+LATEX: \fancyhead[LE]{\footnotesize \nomdeltreball}
+#+LATEX: \fancyhead[LO]{\footnotesize \nomdeltreball}
 #+LATEX: \fancyhead[RE]{\footnotesize Miquel Sabaté Solà}
 #+LATEX: \fancyhead[RO]{\footnotesize Miquel Sabaté Solà}
 
