@@ -6,7 +6,6 @@
 Aquest document se centra en la investigació de veure a quins manuscrits es fa referència de l'autor, i on es poden trobar. Bàsicament és una cerca a NISE, MCEM, entre d'altres, per veure on apareix l'autor i poder remenar.
 
 * NISE
-
 ** Buscant per =Terré, Joan=
 
 - Terré, Joan. Que importa que els cruels fils de sa dalla. Terré, Joan.
@@ -338,8 +337,75 @@ Aquest document se centra en la investigació de veure a quins manuscrits es fa 
   - Forma Mètrica: Romanç
 
 * MCEM
+** Biblioteca de la Universitat. Barcelona. Ms. 13
 
-Per fer
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=1087][ID MCEM: 1101]]
+
+[130] P. 582-583 [J. Terrer; F. V. Garcia (falsa atribució)]. "Sàtira a un casament. Romans". Inc.: "Un casament vergoñant".
+
+** Biblioteca de Catalunya. Barcelona. Ms. 80
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=22][ID MCEM: 13]]
+
+[1c] F. 3-3v (p. 1-2) [Carseli]. "Al lector". "Advertència de qui ha recopilat aquest llibre, intitulat Curiositat cathalana, dels autors y sas obras o poesias que·s tròban continuadas en ell. Dècimas". Inc.: "Aquest llibre se intitula" [autors citats: Francesc Fontanella, Joan Terrer, Rafael Noguers, Francesc Vicent Garcia i Antoni Maçaners].
+[187] F. 191-192 (p. 338-340) [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A un casament de un doctor. Romans". Inc.: "Un casament vergonyant".
+[186] F. 188v-191 (p. 333-338) [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A un maravellós somni y al desengany del món. Sàtyra". Inc.: "Quant apar que, ja cansat".
+[188] F. 192v-196v (p. 341-349) [Joan Terrer]. "Al sagristà del monastir dels àngels, que envià un romans a don Juan Terré. Romans". Inc.: "Il·lustríssim sacristà".
+
+** Biblioteca de Catalunya. Barcelona. Ms. 1140
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=177][ID MCEM: 158]]
+
+[23] F. 23-23v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A una dama de bons vull[s] y cabells. Dècimas". Inc.: "Ulls y cabells de gaieta". Al marge: "24".
+[66] F. 47-48v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "Sàtira". Inc.: "Aquell famós jurista".
+
+** Biblioteca de Catalunya. Barcelona. Ms. 1183
+
+No he sabut trobar el manuscrit al MCEM. Hauria de ser [[https://mcem.iec.cat/veure_camps_g.asp?cerca2=Biblioteca+de+Catalunya&camp2=biblioteca%5Fm&Cerca=Cerca+camp&offset=160][aquí]] entre els IDs 163 i 164, ja que les signatures estan ordenades
+
+** Biblioteca de Catalunya. Barcelona. Ms. 1358
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=201][Id MCEM: 182]]
+
+[132] F. 81-81v [Joan Terrer?; Francesc Vicent Garcia (falsa atribució); J. de Gualbes (falsa atribució)]. "Sàtira a tots los comptes de Cataluña". Inc.: "Volén de festas tractar".
+[359] F. 167v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "Un soldat escapat de la derrota de Leucata a don Juan Terré". Inc.: "Senyor don Juan, ja veheu".
+[88] F. 62 [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A una senyora de bons ulls i mans". Inc.: "Ulls i cabells de gaieta".
+[108] F. 72v-73 [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A una senyora de bons ulls i mans". Inc.: "Ulls i cabells de gayeta".
+[109] F. 73-73v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "Sàtira a un casament". Inc.: "Un casament vergonçant".
+[105] F. 72 [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A una hermosura". Inc.: "Una cara, un cel, dos sols".
+[96] F. 66v-67v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "Comptant un somni". Inc.: "Quant apar que, ja cansat".
+[114] F. 75-76 [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "Sàtira a cert jurista, Joan de Ribas, mostazà de Barcelona". Inc.: "Aquell famós jurista".
+[348] F. 162v-163 [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A una estafa". Inc.: "Que és possible que à pogut".
+
+"Volent de festas tractar", f. 17-18 (falsa atribució, segons Brown i Melchor; també atribuïda a Terrer i Garcia);
+
+** Biblioteca de Catalunya. Barcelona. Ms. 1406
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=204][ID MCEM: 185]]
+
+[13] F. 19-20v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A un doctor robust y jove que casà ab una vella molt flaca. Romans". Inc.: "Un casament vergoñant".
+
+** Biblioteca de Catalunya. Barcelona. 2073
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=255][ID MCEM: 236]]
+
+[2] F. 54-54v (795-795v; 803-803v) [Joan Terrer?; Francesc Vicent Garcia (falsa atribució); J. de Gualbes (falsa atribució)]. "Unas dèssimas als títols de Barselona". Inc.: "Volent de festes tractar". Al final: "Estas dèsimas isquéran l'any 1626, quant lo rei d'Espanya era en Barselona".
+
+** Biblioteca de Catalunya. Barcelona. 2238
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=259][ID MCEM: 240]]
+
+[33] F. 51-51v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. Inc.: "Una cara, un cel, dos sols".
+[253] F. 270-273 [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "Romans". Inc.: "Quant apar que, ja cansat".
+[249] F. 263v-264v [Joan Terrer; Francesc Vicent Garcia (falsa atribució)]. "A una señora de bons ulls y mans". Inc.: "Ulls y cabells de gayeta".
+
+A les observacions se'ns apunta al manuscrit =Biblioteca de Catalunya. Barcelona. Ms. 1358=.
+
+** Biblioteca de Catalunya. Barcelona. 4158
+
+[[https://mcem.iec.cat/veure.asp?id_manuscrits=351][ID MCEM: 331]]
+
+[287] F. 175-176 (172-173) [Joan Terrer?; Francesc Vicent Garcia (falsa atribució); J. de Gualbes (falsa atribució)]. "Sàtyra als comptes de Catalunya". Inc.: "Volent de festas tractar".
 
 * Poemes trobats en total
 
