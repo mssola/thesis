@@ -1,0 +1,7 @@
+#+LATEX: \chapter{Bibliografia}
+
+# TODO: fixar-se en com ho fa «Versos per vèncer»
+
+- Llistat de sigles de biblioteques en format taula
+- Deixar un espai
+- Bibliografia consultada

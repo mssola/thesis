@@ -27,18 +27,13 @@
 \hypersetup{colorlinks=false, pdfborderstyle={/S/U/W 1}, urlbordercolor=gray, pdfborder=0 0 1}
 \hypersetup{hidelinks}
 
-% Simple tool for epigraphs.
-\usepackage{epigraph}
-\setlength\epigraphrule{0pt}
-\setlength\epigraphwidth{.6\textwidth}
-
 % Fancy headers and footers.
 \usepackage{fancyhdr}
 
 % Redefine the plain page style with fancy header in it.
 \fancypagestyle{plain}{%
   \fancyhf{}%
-  \fancyfoot[C]{\footnotesize \thepage}%
+  \fancyfoot[C]{\footnotesize —\hspace{2mm}\thepage\hspace{2mm}—}%
 }
 
 % Used to tweak various settings around titles (e.g. the format of chapter titles).

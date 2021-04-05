@@ -1,5 +1,4 @@
-#+LATEX: \chapter*{Resum}
-
+#+LATEX: \chapter{Resum}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu faucibus metus, volutpat facilisis ligula. Mauris scelerisque urna leo, ac eleifend nisl egestas ultrices. Sed facilisis condimentum ultrices. Ut blandit dolor non sem imperdiet gravida. Suspendisse nec libero non ligula venenatis luctus. Quisque odio dolor, interdum sit amet luctus eu, porttitor ac elit. Sed posuere turpis in lectus malesuada, ut accumsan velit egestas. Aliquam ut porttitor massa. Fusce eget nunc vitae ligula vestibulum posuere id ut diam.
 

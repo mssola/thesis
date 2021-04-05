@@ -1,5 +1,5 @@
+#+TITLE: La vida i obra de Joan Terrer
 #+AUTHOR: Miquel Sabaté Solà
-#+DATE: dilluns 1 de juliol de 2019
 #+DESCRIPTION: Treball de fi de grau
 #+KEYWORDS:
 #+LANGUAGE: ca
@@ -46,7 +46,7 @@
 
 # For the front matter, just show page numbers. Also, get rid off the head rule
 # here so it's never used again.
-#+LATEX: \cfoot{\footnotesize \thepage}
+#+LATEX: \cfoot{\footnotesize —\hspace{2mm}\thepage\hspace{2mm}—}
 #+LATEX: \renewcommand{\headrulewidth}{0.0pt}
 
 #+LATEX: \frontmatter
@@ -57,13 +57,8 @@
 # Add a creative commons page.
 #+LATEX: \input{./include/cc.tex}
 
-# Quotes.
-#+LATEX: \thispagestyle{empty}
-#+LATEX: \setlength\epigraphwidth{.4\textwidth}
-#+LATEX: \epigraph{\itshape Una cita súper profunda.}{\textsc{Montserrat Roig, \textit{Algun llibre}}}
-#+LATEX: \epigraph{\itshape I una dedicatòria i agraïment}
-#+LATEX: \cleardoublepage
-#+LATEX: \newpage
+# Special thanks to...
+#+LATEX: \input{./include/thanks.tex}
 
 # Lastly, we want to include the abstract.
 #+INCLUDE: "./parts/abstract.org"
@@ -72,7 +67,7 @@
 # Tweak some settings around the ToC and finally display it.
 #+LATEX: \renewcommand{\contentsname}{\Large\scshape{Índex}}
 #+LATEX: \renewcommand{\cftchapfont}{\scshape}
-#+LATEX: \renewcommand\cftchappagefont{\scshape\normalfont}
+#+LATEX: \renewcommand{\cftchappagefont}{\scshape\normalfont}
 #+LATEX: \tableofcontents
 
 #
@@ -95,5 +90,7 @@
 
 #+LATEX: \newpage
 #+LATEX: \backmatter
-
-Bibliografia.
+#+INCLUDE: "./parts/origins.org"
+#+INCLUDE: "./parts/edition.org"
+#+INCLUDE: "./parts/first-verses.org"
+#+INCLUDE: "./parts/bibliography.org"
