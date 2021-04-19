@@ -1,0 +1,25 @@
+** «Un casament vergonyant»
+*** Transcripcions
+
+- [x] Parnàs Català
+  - [x] Edició de Rossich (1979)
+- [ ] UB, ms. 13
+- [ ] Santander, ms. 116
+- [ ] Bones Lletres, ms. 3-1-10
+- [ ] Vic, ms. 230
+- [ ] Biblioteca de Catalunya, ms. 1358
+- [ ] Biblioteca de Catalunya, ms. 80
+- [ ] Biblioteca de Catalunya, ms. 1406
+
+*** Diferències entre manuscrits notables
+
+- Vers 4:
+  - En el de Vic el vers és heptasíl·lab i no octosíl·lab com en el de Montserrat. Això té més sentit.
+- Vers 8:
+  - Vic: "vensuts" (no està clar); vs. Montserrat: "recrebat".
+- Vers 9:
+  - A Vic diu «de par de burlas», a Montserrat «de part den burlas»
+- Vers 14:
+  - A Vic diu «bullicios», a Montserrat «Bellicos»
+- Sisena estrofa:
+  - Hi ha força diferències entre Vic i Montserrat.

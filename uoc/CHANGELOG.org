@@ -20,3 +20,33 @@
 ** Març
 
 No he pogut fer res destacable per motius personals.
+
+** Abril
+
+*** De l'1 al 11 d'abril
+
+- Acabats de revisar els manuscrits, avançant en l'assignatura TFG1.
+
+*** Del 12 al 18 d'abril
+
+- Comencen les transcripcions.
+- Reunió amb director, analitzant:
+  - Pot ser que hi hagi algun poema que encara me l'hagi deixat de documentar.
+  - El manuscrit 1358 podria arribar a ser una base
+    - Ell em passarà aquest manuscrit i s'haurà de fer la comparació amb alguna transcripció que ja he fet.
+  - S'han de fer "cates" de més manuscrits per acabar de determinar quin és el millor candidat per ser la base.
+  - M'ha ensenyat una manera més eficient d'anar fent les transcripcions i les col·lacions.
+  - El maig es podria anar a Barcelona per acabar d'agafar manuscrits, tenint en compte la feina que hauré fet a l'abril.
+
+*** 19 d'abril
+
+- TFG1: entregat el document per a la PAC2.
+- Sobre els poemes d'autoria dubtosa:
+  - «Aquell famós jurista»: definitivament de Terrer.
+  - «Vists los atxaques i mals»
+    - Tot apunta a una falsa atribució de Vicent Garcia.
+    - «Curiositat catalana» i alguns manuscrits, com a mínim des del MCEM, apunten a Terrer.
+    - Caldria mirar els manuscrits per veure si l'autoria es deixa més clara, però tot apunta que sí que és d'ell.
+  - «Imperava·l món a soles»:
+    - Tot apunta a una falsa atribució de Vicent Garcia.
+    - No hi ha res que indiqui que sigui de Terrer, malgrat «Curiositat catalana» el tingués just abans d'un llistat d'aquest autor. Caldria mirar si hi ha alguna mena d'indicació en els manuscrits.

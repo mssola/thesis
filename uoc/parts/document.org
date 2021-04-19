@@ -9,3 +9,18 @@ Donec vitae erat in arcu imperdiet accumsan ut pharetra mauris. Nunc consequat e
 Suspendisse placerat lacinia nibh, ut lacinia enim dapibus vel. Curabitur vehicula augue ut lacus sollicitudin, eget imperdiet risus iaculis. Aenean tortor tortor, porttitor maximus velit pretium, convallis condimentum massa. Donec interdum bibendum nisi, at mattis ex aliquam a. Nullam tincidunt justo ante, porta interdum dui hendrerit et. Sed ullamcorper a mauris sit amet viverra. Proin in lorem vitae risus auctor porta. Curabitur in leo at ante cursus feugiat in vel mauris. Donec faucibus accumsan lorem vel ornare. Ut ullamcorper, augue ac dapibus imperdiet, enim nibh sollicitudin dui, eu lacinia diam sem ac turpis.
 
 Donec scelerisque sodales urna tincidunt dignissim. Pellentesque congue augue massa, eget scelerisque elit pharetra eu. Donec non porta urna. Phasellus eget ex semper, sagittis nisl eget, maximus urna. Etiam dolor dui, volutpat nec vestibulum sit amet, faucibus vitae magna. Aliquam aliquam lorem eget eros ornare pulvinar. Morbi sagittis dapibus mauris.
+
+* Idees
+** Quan es va començar en Marc va pensar en aquesta estructura
+
+- Context històric
+- Apunts biogràfics
+- Estudi crític dels textos editats
+- Criteris d’edició
+- Edició dels textos (aquí o en annex)
+- Conclusions
+- Bibliografia
+
+** Alguna secció en què investigui sobre les atribucions?
+
+Hi ha alguns poemes que potser són de dubtosa atribució. Caldria explicar quin grau de confiança tenim en l'atribució de cada poema com fa Raül Garrigassait amb les cartes de Plató: subseccions agrupant "casos".

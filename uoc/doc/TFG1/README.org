@@ -1,0 +1,10 @@
+* TFG1
+
+Aquesta és la primera assignatura que es fa en relació al Treball de Final de Grau, i prepara a l'estudiant per tal d'estructurar el TFG i fer els primers passos.
+
+** La bibliografia i les preguntes de recerca
+
+Un dels primers exercicis de reflexió va ser entregar els següents documents:
+
+- =TFG cerca bibliogràfica.docx=: primera recerca sobre la bibliografia a utilitzar per tal de completar el TFG.
+- =Preguntes Joan Terrer.docx=: preguntes de recerca per tal de perfilar una tesi o hipòtesi de treball.
