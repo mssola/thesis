@@ -1,11 +1,6 @@
 #+LATEX: \chapter{Bibliografia}
 
-# TODO: fixar-se en com ho fa «Versos per vèncer»
+#+LATEX: \input{./parts/centers.tex}
+#+LATEX: \vspace{2em}
 
-- Llistat de sigles de biblioteques en format taula
-- Deixar un espai
 - Bibliografia consultada
-
-** Per fer
-
-- Versos per vèncer: revisar pàgines 32 i 36 sobre la versificació

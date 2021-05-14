@@ -1,0 +1,19 @@
+# Exported during an assignment for TFG1, unexported for the final result.
+
+* Calendari
+
+La realització d'aquest Treball de Final de Grau es realitza a l'any 2021 en la seva totalitat. A continuació s'adjunta un calendari amb la distribució de les tasques sense tenir en compte la feina que s'ha fet abans de maig:
+
+- **Maig**
+  - Es transcriu el manuscrit que es creu base i la col·lació s'està fent. A finals de maig es té accés als últims manuscrits que resten per consultar.
+  - Entrega de la PAC3 en el marc de l'assignatura TFG1. Això comporta tenir el resum, un capítol i l'índex fets.
+- **Juny-Setembre**
+  - Entrega de la PAC4 en el marc de l'assignatura TFG1.
+  - Es té un primer esborrany de l'edició crítica dels poemes de Joan Terrer.
+  - Es llegeix la bibliografia que resti per llegir.
+- **Setembre-Octubre**
+  - Recerca de la biografia de Joan Terrer.
+  - Redacció de bona part de la contextualització del treball.
+- **Octubre-Desembre**
+  - Redacció del que queda del treball, lligant totes les parts.
+  - Revisió i últims retocs.

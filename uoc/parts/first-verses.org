@@ -1,4 +1,4 @@
-#+LATEX: \chapter{Annex: Índex de primers versos}
+* Annex: Índex de primers versos
 
 # TODO: see https://en.wikibooks.org/wiki/LaTeX/Indexing#imakeidx
 

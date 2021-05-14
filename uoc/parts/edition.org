@@ -1,3 +1,3 @@
-#+LATEX: \chapter{Annex: Edició crítica de l'obra de Joan Terrer}
+* Annex: Edició crítica dels poemes de Joan Terrer
 
 Per fer

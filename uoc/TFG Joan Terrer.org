@@ -1,4 +1,4 @@
-#+TITLE: La vida i obra de Joan Terrer
+#+TITLE: Poesia completa de Joan Terrer
 #+AUTHOR: Miquel Sabaté Solà
 #+DESCRIPTION: Treball de fi de grau
 #+KEYWORDS:
@@ -58,10 +58,11 @@
 #+LATEX: \input{./include/cc.tex}
 
 # Special thanks to...
-#+LATEX: \input{./include/thanks.tex}
+# TODO: include this again after PAC3
+# #+LATEX: \input{./include/thanks.tex}
 
 # Lastly, we want to include the abstract.
-#+INCLUDE: "./parts/abstract.org"
+#+INCLUDE: "./parts/abstract.org" :minlevel 1
 #+LATEX: \newpage
 
 # Tweak some settings around the ToC and finally display it.
@@ -82,15 +83,21 @@
 
 # Main matter is written into a single org document.
 #+LATEX: \mainmatter
-#+INCLUDE: "./parts/document.org"
+#+INCLUDE: "./parts/context.org" :minlevel 1
+#+INCLUDE: "./parts/literatura.org" :minlevel 1
+#+INCLUDE: "./parts/biografia.org" :minlevel 1
+#+INCLUDE: "./parts/estudi.org" :minlevel 1
+#+INCLUDE: "./parts/criteris.org" :minlevel 1
+#+INCLUDE: "./parts/conclusions.org" :minlevel 1
+#+INCLUDE: "./parts/calendar.org" :minlevel 1
 
 #
-# Back matter: bibliography
+# Back matter: apendices & bibliography
 #
 
 #+LATEX: \newpage
 #+LATEX: \backmatter
-#+INCLUDE: "./parts/origins.org"
-#+INCLUDE: "./parts/edition.org"
-#+INCLUDE: "./parts/first-verses.org"
-#+INCLUDE: "./parts/bibliography.org"
+#+INCLUDE: "./parts/origins.org" :minlevel 1
+#+INCLUDE: "./parts/edition.org" :minlevel 1
+#+INCLUDE: "./parts/first-verses.org" :minlevel 1
+#+INCLUDE: "./parts/bibliography.org" :minlevel 1

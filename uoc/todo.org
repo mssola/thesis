@@ -1,10 +1,17 @@
-* Planificació
-
-- Acabar de revisar manuscrits
-- 1358 transcrit
-- Cata
-- Anar a Barcelona (maig)
-
 * Misc
 
+- Mirar els =TODO= que hi ha pel document (e.g. el =thanks.tex= està comentat ara per ara)
 - Triar font.
+- Tots els manuscrits en un zip al git
+
+* Bibliografia
+
+- Demanar el de poesia eròtica del Rossich que em pot anar bé en un parell de poemes.
+- Manuscrit de Peguera: quin centre? Hi és al llistat de centres?
+- Versos per vèncer: revisar pàgines 32 i 36 sobre la versificació
+
+* Idees
+
+** Alguna secció en què investigui sobre les atribucions?
+
+Hi ha alguns poemes que potser són de dubtosa atribució. Caldria explicar quin grau de confiança tenim en l'atribució de cada poema com fa Raül Garrigassait amb les cartes de Plató: subseccions agrupant "casos".

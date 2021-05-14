@@ -1,3 +1,4 @@
 *.bbl
 *.el
-./out/thesis.odt
+out/thesis.odt
+doc/edicions/
