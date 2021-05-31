@@ -66,9 +66,12 @@
 #+LATEX: \newpage
 
 # Tweak some settings around the ToC and finally display it.
-#+LATEX: \renewcommand{\contentsname}{\Large\scshape{Índex}}
-#+LATEX: \renewcommand{\cftchapfont}{\scshape}
-#+LATEX: \renewcommand{\cftchappagefont}{\scshape\normalfont}
+#+LATEX: \renewcommand{\contentsname}{\Large\fancyshape{Índex}}
+#+LATEX: \renewcommand{\cftchapfont}{\fancyshape}
+#+LATEX: \renewcommand{\cftchappagefont}{\fancyshape\normalfont}
+#+LATEX: \renewcommand{\cftsecfont}{\fancyshape\small}
+#+LATEX: \renewcommand{\cftsecpagefont}{\fancyshape\small}
+#+LATEX: \renewcommand{\cftdot}{}
 #+LATEX: \tableofcontents
 
 #
@@ -83,6 +86,7 @@
 
 # Main matter is written into a single org document.
 #+LATEX: \mainmatter
+#+INCLUDE: "./parts/intro.org" :minlevel 1
 #+INCLUDE: "./parts/context.org" :minlevel 1
 #+INCLUDE: "./parts/literatura.org" :minlevel 1
 #+INCLUDE: "./parts/biografia.org" :minlevel 1
@@ -92,12 +96,18 @@
 #+INCLUDE: "./parts/calendar.org" :minlevel 1
 
 #
-# Back matter: apendices & bibliography
+# Back matter: bibliography & appendices
 #
 
 #+LATEX: \newpage
 #+LATEX: \backmatter
-#+INCLUDE: "./parts/origins.org" :minlevel 1
+
+#+LATEX: \bibliography{tfg}
+#+LATEX: \addcontentsline{toc}{chapter}{Bibliografia}
+
 #+INCLUDE: "./parts/edition.org" :minlevel 1
+#+INCLUDE: "./parts/origins.org" :minlevel 1
 #+INCLUDE: "./parts/first-verses.org" :minlevel 1
-#+INCLUDE: "./parts/bibliography.org" :minlevel 1
+
+# TODO
+#+LATEX: \nocite{Blom2019,Feliu2008,Martinez-Gil2013,Miralles2020,Miralles2010,Rossich1985,Rossich1997,Rossich2011,Rossich2006,Santanach2011,Solervicens2016,Veny2016}

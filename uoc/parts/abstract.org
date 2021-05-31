@@ -7,4 +7,4 @@ La tasca d'aquest treball ha consistit en desenterrar d'entre els manuscrits que
 Finalment, si bé l'exercici principal ha sigut aquesta edició crítica, es fa difícil editar i llegir el corpus poètic d'una persona que només és un nom. És per això que també s'ha indagat en la seva vida. Aquest segon objectiu ha donat uns resultats que ens permeten veure a una persona de carn i ossos, que es movia entre unes dates precises i que tenia uns cercles socials i culturals molt determinats. Aquesta recerca biogràfica complementa la present edició, així com l'enteniment de la poesia presentada ajuda a entreveure un personatge complex. És un exercici, en definitiva, de rescatar a una persona de l'oblit.
 #+LATEX: \\
 #+LATEX: \\
-#+LATEX: {\large\scshape Paraules clau: } Literatura catalana, Barroc, Joan Terrer, edició crítica, recerca, recuperació.
+#+LATEX: {\large\fancyshape Paraules clau: } Literatura catalana, Barroc, Joan Terrer, edició crítica, recerca, recuperació.

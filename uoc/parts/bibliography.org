@@ -1,6 +1,0 @@
-#+LATEX: \chapter{Bibliografia}
-
-#+LATEX: \input{./parts/centers.tex}
-#+LATEX: \vspace{2em}
-
-- Bibliografia consultada

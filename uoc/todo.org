@@ -4,11 +4,18 @@
 - Triar font.
 - Tots els manuscrits en un zip al git
 
+* Poemes
+
+- Tenir en compte el primer vers en l'índex final, i fer una mica com el command \poemtitle que defineix una nova comanda a dins seu.
+- Actualitzar les rúbriques
+
 * Bibliografia
 
 - Demanar el de poesia eròtica del Rossich que em pot anar bé en un parell de poemes.
 - Manuscrit de Peguera: quin centre? Hi és al llistat de centres?
 - Versos per vèncer: revisar pàgines 32 i 36 sobre la versificació
+- Ficar l'apunt de "(coord.)" en algunes referències
+- Mirar "biber"
 
 * Idees
 

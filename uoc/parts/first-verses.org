@@ -1,5 +1,16 @@
 * Annex: Índex de primers versos
 
-# TODO: see https://en.wikibooks.org/wiki/LaTeX/Indexing#imakeidx
-
-Per fer
+#+LATEX: \myverseref{I}
+#+LATEX: \myverseref{III}
+#+LATEX: \myverseref{IV}
+#+LATEX: \myverseref{V}
+#+LATEX: \myverseref{II}
+#+LATEX: \myverseref{VI}
+#+LATEX: \myverseref{VII}
+#+LATEX: \myverseref{VIII}
+#+LATEX: \myverseref{IX}
+#+LATEX: \myverseref{X}
+#+LATEX: \myverseref{XI}
+#+LATEX: \myverseref{XII}
+#+LATEX: \myverseref{XIII}
+#+LATEX: \myverseref{XIV}

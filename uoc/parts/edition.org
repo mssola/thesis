@@ -1,3 +1,57 @@
 * Annex: Edició crítica dels poemes de Joan Terrer
 
-Per fer
+#+LATEX: \mypoemtitle{I}{Sàtira a cert jurista. Lo Dr. Ribas Mostazar de Barcelona}{Aquell famós jurista}
+#+LATEX: \input{./parts/poems/i.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{II}{A un meravellós somni i al desengany del món}{Quan apar que, ja cansat}
+#+LATEX: \input{./parts/poems/ii.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{III}{Home que no saps tirar}{Home que no saps tirar}
+#+LATEX: \input{./parts/poems/iii.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{IV}{Al Sagristà del Monestir dels Àngels, que envià un romanç a Dn. Joan Terrer}{Il·lustríssim Sagristà}
+#+LATEX: \input{./parts/poems/iv.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{V}{Lletra contra lo Diable de Vallfogona}{Imperava el món a soles}
+#+LATEX: \input{./parts/poems/v.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{VI}{A una estafa}{Què és possible que ha pogut}
+#+LATEX: \input{./parts/poems/vi.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{VII}{De Don Joan Terrer i Sarriera, alcaid del Castell de Bellver. Sonet}{Què importa que els cruels fils de sa dalla}
+#+LATEX: \input{./parts/poems/vii.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{VIII}{Un soldat escapat de la derrota de Leucata a Don Joan Terrer}{Senyor don Joan, ja veieu}
+#+LATEX: \input{./parts/poems/viii.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{IX}{Llanto i plany que fa la ciutat de Barcelona, veient que es va acabant. Redondilles}{Trista de mi Barcelona}
+#+LATEX: \input{./parts/poems/ix.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{X}{A una senyora de bons ulls i mans}{Ulls i cabells de gaieta}
+#+LATEX: \input{./parts/poems/x.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{XI}{Sàtira a un casament}{Un casament vergonyant}
+#+LATEX: \input{./parts/poems/xi.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{XII}{A una hermosura}{Una cara, un cel, dos sols}
+#+LATEX: \input{./parts/poems/xii.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{XIII}{Llicència per a que pogués menjar carn el Senyor de Fluvià. Redondilles}{Vists los atxaques i mals}
+#+LATEX: \input{./parts/poems/xiii.tex}
+#+LATEX: \newpage
+
+#+LATEX: \mypoemtitle{XIV}{Sàtira a tots els Comptes de Catalunya}{Volent de festes tractar}
+#+LATEX: \input{./parts/poems/xiv.tex}
+#+LATEX: \newpage

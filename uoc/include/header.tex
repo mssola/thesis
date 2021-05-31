@@ -36,9 +36,31 @@
   \fancyfoot[C]{\footnotesize —\hspace{2mm}\thepage\hspace{2mm}—}%
 }
 
+\renewcommand{\fancyshape}{\scshape}
+\renewcommand{\textfancy}{\textsc}
+
 % Used to tweak various settings around titles (e.g. the format of chapter titles).
 \usepackage{titlesec}
-\titleformat{\chapter}{\scshape\large}{\thechapter.}{20pt}{\large\scshape}
+\titleformat{\chapter}{\fancyshape\large}{\thechapter.}{20pt}{\large\fancyshape}
+\titleformat{\section}{\fancyshape\normalsize}{\thechapter.\thesection}{16pt}{\normalsize\fancyshape}
 
 % Used to tweak the style of the ToC.
 \usepackage{tocloft}
+
+% Bibliography
+% \usepackage[natbibapa]{apacite}
+\usepackage{natbib}
+\bibliographystyle{newapa}
+
+% Useful package to replicate text around (e.g. poem titles).
+\usepackage{clipboard}
+
+% The verse environment
+\usepackage{verse}
+\setlength{\stanzaskip}{0.75\baselineskip} % The distance between stanzas
+\newcounter{poem}
+
+% Include the epigraph environment.
+\usepackage{epigraph}
+\setlength\epigraphrule{0pt}
+\setlength\epigraphwidth{.6\textwidth}

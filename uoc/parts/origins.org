@@ -1,3 +1,3 @@
-* Annex: Procedència dels textos, testimonis i aparat crític
+* Annex: Procedència dels textos
 
-Per fer
+#+LATEX: \input{./parts/origins.tex}

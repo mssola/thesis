@@ -16,3 +16,39 @@
 % Define the name of the thesis here so it can be reused later on.
 \newcommand{\nomdeltreball}{Poesia completa de Joan Terrer}
 \newcommand{\subtitol}{Estudi i edició crítica}
+
+%%
+% Behold some new commands for working with poems.
+
+% Command to enter new poem titles. This will also create a command named
+% `\poem#1` which contains the text that identifies the given poem.
+\newcommand{\mypoemtitle}[3]{%
+  \begin{center}%
+    {\normalfont\fancyshape #1}%
+    \refstepcounter{poem}
+    \label{poem:#1}%
+  \end{center}%
+%
+  \vspace*{-\baselineskip}%
+%
+  \begin{center}%
+    {\textit{#2}}%
+  \end{center}%
+%
+  \expandafter\newcommand\csname poem#1\endcsname{{\normalfont\fancyshape #1}. {\textit{#2}}}%
+%
+  \addcontentsline{toc}{section}{#3}
+  \expandafter\newcommand\csname myfirstverse#1\endcsname{{\normalfont #3}}%
+}
+
+% Define a new reference command `\myfirstverse#1` which contains the first
+% verse of the poem. This can then be used directly into the poem, and it will
+% also be picked by `\myverseref` so to give a reference to it.
+\newcommand{\mysetfirstverse}[2]{%
+  \expandafter\newcommand\csname myfirstverse#1\endcsname{{\normalfont #2}}%
+}
+
+% First verse reference.
+\newcommand{\myverseref}[1]{%
+  \hyperref[poem:#1]{\csname myfirstverse#1\endcsname} \hfill \pageref{poem:#1} \\
+}
